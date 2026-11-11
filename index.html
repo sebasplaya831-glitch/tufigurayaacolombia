@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Tu Figura Yaa | Fajas Colombianas de Lujo (Colombia & México)</title>
+    <meta name="description" content="Tienda oficial de Tu Figura Yaa. Fajas colombianas en 100% Powernet original, cinturillas reloj de arena, postquirúrgicas y levanta cola. Envíos a toda Colombia y México con pagos locales (Contraentrega, Nequi, OXXO Pay, SPEI).">
+    
+    <!-- Favicon Oficial con Logo de la Marca -->
+    <link rel="icon" type="image/jpeg" href="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg">
+    <link rel="shortcut icon" type="image/jpeg" href="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg">
+    <link rel="apple-touch-icon" href="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Estilos de la Tienda -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Responsive Móvil — Adaptación perfecta a cualquier dispositivo -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Mejoras UX -->
+    <link rel="stylesheet" href="css/enhancements.css">
+</head>
+<body>
+
+    <!-- =========================================================
+         BARRA SUPERIOR DE ANUNCIOS Y SELECTOR DE PAÍS
+         ========================================================= -->
+    <header class="announcement-bar">
+        <div class="container">
+            <!-- Ticker de anuncios dinámico según el país -->
+            <div class="announcement-ticker" id="announcementTickerText">
+                <div class="announcement-ticker-item">
+                    <span>🚚</span>
+                    <span>Envíos a toda Colombia • Pago Contra Entrega <strong>ÚNICAMENTE en Cali</strong></span>
+                </div>
+                <div class="announcement-ticker-item">
+                    <span>💱</span>
+                    <span>Tasa oficial exacta: <strong>1 MXN = $188.74 COP</strong></span>
+                </div>
+                <div class="announcement-ticker-item">
+                    <span>🇨🇴</span>
+                    <span>Auténtico <strong>Producto Caleño (Cali, Colombia)</strong></span>
+                </div>
+                <div class="announcement-ticker-item">
+                    <span>✨</span>
+                    <span>Envío <strong>GRATIS</strong> únicamente en la ciudad de <strong>Cali</strong></span>
+                </div>
+            </div>
+
+            <!-- Selector de País (Colombia / México) -->
+            <div class="country-switcher" aria-label="Cambiar País de Compra">
+                <button type="button" class="country-select-btn active" data-country="CO" title="Comprar en Colombia (COP)">
+                    <span>🇨🇴 Colombia</span>
+                </button>
+                <button type="button" class="country-select-btn" data-country="MX" title="Comprar en México (MXN)">
+                    <span>🇲🇽 México</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         NAVBAR FIJA CON GLASSMORPHISM
+         ========================================================= -->
+    <nav class="navbar" id="mainNavbar">
+        <div class="container nav-wrapper">
+            <!-- Logo oficial de la marca -->
+            <a href="#inicio" class="brand-logo">
+                <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg" 
+                     onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg'" 
+                     alt="Tu Figura Yaa Colombia" 
+                     class="brand-logo-badge">
+                <div class="brand-typography-stack">
+                    <span class="brand-typo-tu">Tú</span>
+                    <span class="brand-typo-figura-yaa">Figura Yaa</span>
+                    <span class="brand-typo-colombia">COLOMBIA</span>
+                </div>
+            </a>
+
+            <!-- Enlaces de navegación -->
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#categorias">Colecciones</a></li>
+                <li><a href="#fundadora">Nuestra Fundadora</a></li>
+                <li><a href="#guia-tallas" class="open-size-modal-btn">Guía de Tallas</a></li>
+                <li><a href="#testimonios">Clientas & Fotos</a></li>
+                <li><a href="#vipClub">Club VIP (30% OFF)</a></li>
+                <li><a href="#nosotros">La Marca</a></li>
+                <li><a href="#faq">Preguntas</a></li>
+            </ul>
+
+            <!-- Acciones de cabecera -->
+            <div class="nav-actions">
+                <!-- Indicador de país activo en Navbar -->
+                <div class="nav-country-indicator" title="País activo para compra">
+                    <span id="activeCountryFlag">🇨🇴</span>
+                    <span id="activeCountryName">Colombia</span>
+                </div>
+
+                <!-- Insignia VIP activa -->
+                <span class="vip-active-nav-badge hidden" id="navVipBadge" title="Membresía Club VIP Activa - 30% OFF Storewide">
+                    👑 VIP 30% OFF
+                </span>
+
+                <!-- Botón Guía Rápida de Tallas -->
+                <button type="button" class="nav-btn-icon open-size-modal-btn" title="Calculadora de Tallas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.3 15.3l-8.6-8.6a2 2 0 0 0-2.8 0L2.7 13.9a2 2 0 0 0 0 2.8l2.6 2.6a2 2 0 0 0 2.8 0l7.2-7.2"></path>
+                        <path d="m14.5 12.5 2-2"></path>
+                        <path d="m11.5 9.5 2-2"></path>
+                        <path d="m8.5 6.5 2-2"></path>
+                        <path d="m17.5 15.5 2-2"></path>
+                    </svg>
+                </button>
+
+                <!-- Carrito con contador -->
+                <button type="button" class="nav-btn-icon open-cart-btn" id="openCartBtn" title="Ver Carrito de Compras">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-counter-badge hidden">0</span>
+                </button>
+
+                <!-- Menú Móvil Hamburguesa -->
+                <button type="button" class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Abrir Menú">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================================
+         HERO SECTION DE LUJO
+         ========================================================= -->
+    <header class="hero-section" id="inicio">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge-pill">
+                    <span>👑</span>
+                    <span>100% Manufactura Colombiana Certificada</span>
+                </div>
+
+                <h1 class="hero-title">
+                    El Secreto de las <br>
+                    <span class="gold-gradient-text">Curvas Perfectas</span> <br>
+                    con <span class="brand-typo-figura-yaa" style="font-size: 3.5rem; vertical-align: middle;">Figura Yaa</span>
+                </h1>
+
+                <p class="hero-description">
+                    Fajas moldeadoras y postquirúrgicas de alta compresión elaboradas con auténtico 
+                    <strong>Powernet grado médico colombiano</strong> y forro interno en <strong>SmartLycra con microcápsulas de Vitamina E y Aloe Vera</strong>. 
+                    Realza tu belleza natural con total confort y envíos garantizados a Colombia y México.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#catalogo" class="btn btn-gold btn-large">
+                        <span>Explorar Colección</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </a>
+                    <button type="button" class="btn btn-outline-gold btn-large open-size-modal-btn">
+                        <span>📏 Calcular Mi Talla</span>
+                    </button>
+                </div>
+
+                <div class="hero-guarantees">
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="1" y="3" width="15" height="13"></rect>
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Pagos Locales</h4>
+                            <p>OXXO, SPEI o Contra Entrega</p>
+                        </div>
+                    </div>
+
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Powernet Original</h4>
+                            <p>No cede ni pierde compresión</p>
+                        </div>
+                    </div>
+
+                    <div class="guarantee-item">
+                        <div class="guarantee-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+                            </svg>
+                        </div>
+                        <div class="guarantee-text">
+                            <h4>Asesoría VIP</h4>
+                            <p>Acompañamiento por WhatsApp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual destacado de la Hero con modelo oficial -->
+            <div class="hero-visual">
+                <div class="hero-visual-card">
+                    <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789620521730.png" 
+                         onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789620521730.png'"
+                         alt="Faja Postquirúrgica Oficial Tu Figura Yaa">
+                    
+                    <div class="hero-floating-card">
+                        <div class="floating-stats-row">
+                            <div class="stat-item">
+                                <span class="stat-num">Grado Médico</span>
+                                <span class="stat-label">Postquirúrgica</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-num">100%</span>
+                                <span class="stat-label">Powernet Puro</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-num">3 Broches</span>
+                                <span class="stat-label">Ajuste Gradual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         COLECCIONES Y LÍNEAS DESTACADAS
+         ========================================================= -->
+    <section class="section-padding" id="categorias">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tagline">Colecciones Oficiales Tu Figura Yaa</span>
+                <h2 class="section-title">Líneas Postquirúrgica, Moldeadora & Dorada</h2>
+                <p class="section-desc">Powernet 100% colombiano de compresión médica y estética: fajas postoperatorias, moldeadoras de alta definición y nuestra exclusiva Línea Dorada.</p>
+            </div>
+
+            <div class="categories-showcase-grid">
+                <div class="category-banner-card" onclick="selectCategoryFilter('postquirurgica')">
+                    <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789620499316.png" 
+                         onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789620499316.png'"
+                         alt="Fajas Postquirúrgicas Tu Figura Yaa">
+                    <div class="category-banner-overlay">
+                        <span class="badge badge-gold">5 Modelos Oficiales</span>
+                        <h3 class="category-banner-title">Línea Postquirúrgica</h3>
+                        <p class="category-banner-desc">REF. 705, 712, 702, 714, 760 • Grado médico</p>
+                    </div>
+                </div>
+
+                <div class="category-banner-card" onclick="selectCategoryFilter('moldeadoras')">
+                    <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1790038901653.png" 
+                         onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1790038901653.png'"
+                         alt="Fajas Moldeadoras Tu Figura Yaa">
+                    <div class="category-banner-overlay">
+                        <span class="badge badge-gold">9 Modelos Oficiales</span>
+                        <h3 class="category-banner-title">Línea Moldeadora</h3>
+                        <p class="category-banner-desc">REF. 705, 703, 757, 740, 708, 901, 902 • Reloj de arena</p>
+                    </div>
+                </div>
+
+                <div class="category-banner-card" onclick="selectCategoryFilter('dorada')">
+                    <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1791927929390.jpg" 
+                         onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1791927929390.jpg'"
+                         alt="Línea Dorada Tu Figura Yaa">
+                    <div class="category-banner-overlay">
+                        <span class="badge badge-gold">5 Modelos Exclusivos</span>
+                        <h3 class="category-banner-title">Línea Dorada</h3>
+                        <p class="category-banner-desc">REF. 819, 812, 813, 746, 905 • Corsets & 13 Varillas</p>
+                    </div>
+                </div>
+
+                <div class="category-banner-card" onclick="selectCategoryFilter('all')">
+                    <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1790038909269.png" 
+                         onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1790038909269.png'"
+                         alt="Catálogo Completo Tu Figura Yaa">
+                    <div class="category-banner-overlay">
+                        <span class="badge badge-gold">19 Modelos Oficiales</span>
+                        <h3 class="category-banner-title">Catálogo Completo</h3>
+                        <p class="category-banner-desc">Ver todas las fajas en COP y MXN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         CATÁLOGO PRINCIPAL CON FILTROS EN TIEMPO REAL
+         ========================================================= -->
+    <main class="section-padding catalog-section" id="catalogo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tagline">Nuestra Colección Oficial</span>
+                <h2 class="section-title">Catálogo de Fajas Colombianas</h2>
+                <p class="section-desc">Precios en moneda local. Filtra por categoría, compresión o busca el modelo deseado.</p>
+            </div>
+
+            <!-- Controles de filtrado y búsqueda -->
+            <div class="catalog-controls">
+                <!-- Pestañas de categorías -->
+                <div class="category-tabs-container" id="categoryTabs">
+                    <!-- Se genera dinámicamente con app.js -->
+                </div>
+
+                <!-- Sub-barra con búsqueda y selects -->
+                <div class="catalog-filters-subbar">
+                    <div class="search-box-wrapper">
+                        <svg class="search-icon-inside" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="catalogSearch" placeholder="Buscar por modelo, tipo o beneficio...">
+                    </div>
+
+                    <div class="dropdown-filters">
+                        <select class="filter-select" id="compressionFilter" aria-label="Filtrar por Compresión">
+                            <option value="all">Toda Compresión</option>
+                            <option value="Media">Compresión Media</option>
+                            <option value="Alta">Compresión Alta</option>
+                            <option value="Extra Firme">Compresión Extra Firme</option>
+                        </select>
+
+                        <select class="filter-select" id="sortFilter" aria-label="Ordenar Productos">
+                            <option value="featured">Destacados</option>
+                            <option value="price-asc">Menor Precio</option>
+                            <option value="price-desc">Mayor Precio</option>
+                            <option value="rating">Mejor Calificación</option>
+                        </select>
+                    </div>
+
+                    <span class="catalog-product-count" id="catalogProductCount">Cargando fajas...</span>
+                </div>
+            </div>
+
+            <!-- Grilla interactiva de productos -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Generado dinámicamente desde js/products.js -->
+            </div>
+
+            <!-- =========================================================
+                 SECCIÓN NUESTRA FUNDADORA (100% PRODUCTO CALEÑO)
+                 ========================================================= -->
+            <div class="founder-spotlight-card" id="fundadora">
+                <div class="founder-spotlight-visual">
+                    <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1793055192435_086d96ae.jpg" 
+                         onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1793055192435_086d96ae.jpg'"
+                         alt="Yennifer Ayala Aguirre - Fundadora de Tu Figura Yaa Colombia" 
+                         class="founder-portrait-photo">
+                    <div class="founder-floating-badge">
+                        <span>🇨🇴 Cali, Colombia ➔ 🇲🇽 México</span>
+                        <strong>Yennifer Ayala Aguirre</strong>
+                    </div>
+                </div>
+
+                <div class="founder-spotlight-content">
+                    <span class="badge badge-gold">Nuestra historia | Tu Figura Yaa Colombia</span>
+                    <h3 class="founder-headline">Nuestra Fundadora</h3>
+                    <p class="founder-lead-quote">
+                        "Detrás de Tu Figura Yaa Colombia hay un sueño, una mujer emprendedora y una pasión por realzar la belleza femenina."
+                    </p>
+                    <div class="founder-story-body">
+                        <p>
+                            Mi nombre es <strong>Yennifer Ayala Aguirre</strong>, fundadora de <strong>Tu Figura Yaa Colombia</strong>. Hace 6 años, en la hermosa ciudad de <strong>Cali, Colombia</strong>, nació este proyecto con la ilusión de ofrecer a las mujeres prendas que les permitieran sentirse más seguras, cómodas y hermosas, resaltando lo mejor de cada una.
+                        </p>
+                        <p>
+                            Lo que comenzó como un sueño se ha convertido en un camino de esfuerzo, aprendizaje, dedicación y crecimiento. Con mucho amor por lo que hacemos, hemos llevado nuestra esencia colombiana más allá de las fronteras, enfocando principalmente nuestra comercialización en <strong>México</strong>, un país que nos ha permitido seguir creciendo y llegar a más mujeres.
+                        </p>
+                        <p>
+                            En Tu Figura Yaa Colombia creemos que cada mujer tiene una belleza única y merece sentirse espectacular. Por eso, trabajamos para ofrecer productos que combinan estilo, calidad y ese toque especial de la moda colombiana que tanto nos caracteriza.
+                        </p>
+                        <p>
+                            Hoy seguimos construyendo esta historia con la misma pasión del primer día, agradeciendo a cada clienta que confía en nuestra marca y forma parte de este sueño.
+                        </p>
+                        <p class="founder-highlight-motto">
+                            Somos más que una marca: somos confianza, perseverancia, belleza y esencia colombiana.
+                        </p>
+                        <p class="founder-gratitude">
+                            Gracias por ser parte de nuestra historia.
+                        </p>
+                    </div>
+                    <div class="founder-signature-row">
+                        <div class="founder-sign-info">
+                            <span class="founder-sign-greeting">Con cariño,</span>
+                            <span class="founder-name-text">Yennifer Ayala Aguirre</span>
+                            <span class="founder-city-text">Fundadora de Tu Figura Yaa Colombia 🇨🇴🇲🇽</span>
+                        </div>
+                        <div class="founder-brand-sign">
+                            <span class="founder-brand-sign-text">Tu Figura Yaa Colombia —</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =========================================================
+         TECNOLOGÍA Y 4 PILARES COLOMBIANOS
+         ========================================================= -->
+    <section class="section-padding technology-section" id="beneficios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tagline">Ingeniería Textil de Vanguardia</span>
+                <h2 class="section-title">¿Por Qué Elegir Tu Figura Yaa?</h2>
+                <p class="section-desc">Detalles que marcan la diferencia entre una faja genérica y una auténtica faja de alta gama colombiana.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Powernet Original Certificado</h3>
+                    <p class="feature-desc">Tejido inteligente hexagonal que ofrece compresión gradual firme y continua sin desgastarse ni estirarse con los lavados.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">SmartLycra con Aloe & Vitamina E</h3>
+                    <p class="feature-desc">Forro de contacto directo suave y refrescante con microcápsulas hidratantes que protegen tu piel y aceleran la cicatrización.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Costuras Planas Invisibles</h3>
+                    <p class="feature-desc">Tecnología de costuras ultra planas que no se marcan sobre la ropa exterior ni causan roces o marcas en la piel.</p>
+                </div>
+
+                <div class="feature-box">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Realce Glúteo Push-Up Natural</h3>
+                    <p class="feature-desc">Patronaje anatómico que redondea y proyecta los glúteos de forma natural sin rellenos de espuma ni esponjas artificiales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         TESTIMONIOS Y EXPERIENCIAS REALES CON FOTOS
+         ========================================================= -->
+    <section class="section-padding reviews-interactive-section" id="testimonios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tagline">Voces y Resultados Reales en Colombia y México</span>
+                <h2 class="section-title">Experiencias de Nuestras Clientas</h2>
+                <p class="section-desc">Opiniones sinceras y fotografías reales de mujeres que moldean su silueta con Tu Figura Yaa.</p>
+            </div>
+
+            <!-- Grilla dinámica de comentarios con fotos -->
+            <div class="reviews-grid" id="reviewsFeedGrid">
+                <!-- Se alimenta dinámicamente desde js/app.js (localStorage + opiniones oficiales) -->
+            </div>
+
+            <!-- Caja de Comentarios Interactiva con Subida de Fotos -->
+            <div class="review-submission-box" id="reviewBoxContainer">
+                <div class="review-box-header">
+                    <div class="review-box-title-group">
+                        <span class="badge badge-gold">Comunidad Tu Figura Yaa</span>
+                        <h3>Comparte Tu Experiencia y Sube Tu Foto ✨</h3>
+                        <p>¿Ya tienes tu faja de Powernet colombiano? Cuéntale a otras mujeres tus resultados y adjunta una foto luciendo tu figura.</p>
+                    </div>
+                </div>
+
+                <form id="clientReviewForm" class="client-review-form" onsubmit="submitClientReview(event)">
+                    <div class="calc-form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="reviewAuthorName">Tu Nombre Completo (*):</label>
+                            <input type="text" class="form-input" id="reviewAuthorName" placeholder="Ej: Marcela Montoya" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="reviewAuthorCity">Ciudad y País (*):</label>
+                            <input type="text" class="form-input" id="reviewAuthorCity" placeholder="Ej: Cali, Colombia o San Luis Potosí, México" required>
+                        </div>
+                    </div>
+
+                    <div class="calc-form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="reviewProductSelect">Modelo o Línea de Faja (*):</label>
+                            <select class="form-select" id="reviewProductSelect" required>
+                                <option value="">Selecciona tu faja...</option>
+                                <option value="Faja Sisa Broches Short Medio (REF. 705)">REF. 705 • Faja Sisa Broches Short Medio</option>
+                                <option value="Faja Brasier Integrado Short Medio (REF. 712)">REF. 712 • Brasier Integrado Short Medio</option>
+                                <option value="Cinturilla Reloj de Arena 9 Varillas (REF. 757)">REF. 757 • Cinturilla Reloj de Arena 9 Varillas</option>
+                                <option value="Chaleco Reloj de Arena Espalda Alta (REF. 740)">REF. 740 • Chaleco Reloj de Arena Espalda Alta</option>
+                                <option value="Cinturilla 13 Varillas Broches y Cierre (REF. 819)">REF. 819 • Línea Dorada 13 Varillas</option>
+                                <option value="Corset Reloj de Arena Escote Corazón (REF. 812)">REF. 812 • Línea Dorada Corset Escote Corazón</option>
+                                <option value="Chaleco 13 Varillas Broches y Cierre (REF. 813)">REF. 813 • Línea Dorada Chaleco 13 Varillas</option>
+                                <option value="Short Levanta Glúteos Magic (REF. 708)">REF. 708 • Short Levanta Glúteos Magic</option>
+                                <option value="Otra Faja Tu Figura Yaa">Otra referencia oficial de la marca</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Calificación de tu Experiencia (*):</label>
+                            <div class="star-rating-picker" id="starRatingPicker" aria-label="Elegir estrellas de calificación">
+                                <button type="button" class="star-picker-btn active" data-rating="1">★</button>
+                                <button type="button" class="star-picker-btn active" data-rating="2">★</button>
+                                <button type="button" class="star-picker-btn active" data-rating="3">★</button>
+                                <button type="button" class="star-picker-btn active" data-rating="4">★</button>
+                                <button type="button" class="star-picker-btn active" data-rating="5">★</button>
+                                <span class="rating-text-label" id="ratingTextLabel">5.0 de 5 estrellas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.25rem;">
+                        <label class="form-label" for="reviewCommentText">Tu Opinión y Experiencia (*):</label>
+                        <textarea class="form-input review-textarea" id="reviewCommentText" rows="4" 
+                                  placeholder="Cuéntanos: ¿Cómo sentiste la compresión del Powernet? ¿Cómo te sentó la talla? ¿Qué tal la entrega y el servicio?" required></textarea>
+                    </div>
+
+                    <!-- Adjuntar Foto -->
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-label">📷 Adjuntar Foto de tu Resultado o Producto (Opcional):</label>
+                        <div class="photo-upload-container">
+                            <label class="photo-upload-label" for="reviewPhotoInput">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                                    <circle cx="12" cy="13" r="4"></circle>
+                                </svg>
+                                <span>Haz clic aquí para seleccionar una foto desde tu celular o computadora</span>
+                                <small class="text-muted">(Formatos JPG, PNG, WEBP)</small>
+                            </label>
+                            <input type="file" id="reviewPhotoInput" accept="image/*" class="photo-file-hidden" onchange="handleReviewPhotoSelected(event)">
+                        </div>
+
+                        <!-- Vista previa de la foto seleccionada -->
+                        <div class="review-photo-preview-wrapper hidden" id="reviewPhotoPreviewWrapper">
+                            <div class="preview-card">
+                                <img id="reviewPhotoPreviewImg" src="" alt="Vista previa de tu foto" class="preview-img">
+                                <div class="preview-info">
+                                    <span class="preview-filename" id="reviewPhotoPreviewName">foto.jpg</span>
+                                    <button type="button" class="btn-remove-photo" onclick="removeSelectedReviewPhoto()" title="Eliminar foto">✕ Quitar Foto</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-form-actions">
+                        <button type="submit" class="btn btn-gold btn-large">
+                            <span>Publicar Mi Experiencia ✨</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                        </button>
+                        <p class="text-sm text-muted">✓ Tu opinión y foto se publicarán inmediatamente en la comunidad oficial de Tu Figura Yaa.</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SOBRE NOSOTROS
+         ========================================================= -->
+    <section class="section-padding about-section" id="nosotros">
+        <div class="container about-grid">
+            <div class="about-image-wrapper">
+                <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg" 
+                     onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg'" 
+                     alt="Logo Oficial Tu Figura Yaa Colombia"
+                     class="about-brand-logo-img">
+                <div class="about-floating-seal">
+                    <span class="seal-title">Cali, Colombia</span>
+                    <span class="seal-sub">100% Producto Caleño Oficial</span>
+                </div>
+            </div>
+
+            <div class="about-text-content">
+                <span class="section-tagline">Nuestra Esencia y Confección</span>
+                <h3 class="about-title">Orgullo Caleño • Auténtica Confección de Cali, Colombia</h3>
+                <p>
+                    En <strong>Tu Figura Yaa</strong> somos un <strong>auténtico producto caleño</strong>, nacidos, diseñados y confeccionados en la ciudad de <strong>Cali, Colombia</strong>, cuna textil reconocida por la excelencia en fajas de lujo y compresión médica en 100% Powernet original.
+                </p>
+                <p>
+                    Cada una de nuestras prendas es un <strong>producto 100% caleño</strong> elaborado con los más rigurosos estándares ergonómicos, costuras planas que no marcan y forro en SmartLycra con Aloe Vera y Vitamina E para proteger y nutrir tu piel.
+                </p>
+                <p>
+                    Llegamos a miles de mujeres con centros de distribución propios: desde <strong>Cali para toda Colombia</strong> (con <strong>Envío GRATIS únicamente en Cali</strong> y pago contra entrega) y desde <strong>San Luis Potosí para todo México</strong> (con <strong>Envío GRATIS únicamente en San Luis Potosí</strong>, OXXO Pay y transferencias SPEI).
+                </p>
+
+                <div class="about-values-list">
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Producto 100% Caleño:</strong> Orgullosamente creado y fabricado en Cali, Colombia.</p>
+                    </div>
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Powernet Auténtico:</strong> Mantiene su compresión intacta sin deformarse con el tiempo.</p>
+                    </div>
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Envíos Especiales:</strong> Envío GRATIS en Cali (Colombia) y San Luis Potosí (México).</p>
+                    </div>
+                    <div class="value-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Asesoría VIP:</strong> Asesoras especializadas en Colombia (+57) y México (+52).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         PREGUNTAS FRECUENTES (FAQ)
+         ========================================================= -->
+    <section class="section-padding" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tagline">Resolvemos Tus Dudas</span>
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <p class="section-desc">Todo lo que necesitas saber antes de ordenar tu faja.</p>
+            </div>
+
+            <div class="faq-accordion">
+                <div class="faq-item open">
+                    <div class="faq-item-header">
+                        <span>¿Cómo funcionan los pagos en México (OXXO Pay y SPEI)?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-item-body">
+                        <p>Si estás en México, puedes pagar en efectivo en cualquier OXXO dictando la referencia numérica generada en el checkout, realizar transferencia electrónica directa vía SPEI (CLABE BBVA) o pagar con tarjeta. Tu pago se acredita al instante y te enviamos tu número de guía.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>¿Cómo funciona el Pago Contra Entrega (Exclusivo Cali y San Luis Potosí)?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-item-body">
+                        <p>El Pago Contra Entrega está disponible <strong>únicamente en la ciudad de Cali (Colombia)</strong> y en la ciudad de <strong>San Luis Potosí (México)</strong>. En estas ciudades, recibes tu pedido en la puerta de tu domicilio y pagas en efectivo al mensajero con <strong>Envío GRATIS</strong>. Para cualquier otra ciudad de Colombia, despachamos con previa transferencia a Nequi, Daviplata, Bancolombia o PSE; y para el resto de México, aceptamos OXXO Pay, SPEI y tarjeta con entregas seguras en 24 a 48 horas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>¿Cuánto tiempo tarda en llegar mi pedido?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-item-body">
+                        <p>Tanto en Colombia (Medellín, Bogotá, Cali) como en México (CDMX, Guadalajara, Monterrey), las entregas toman de 24 a 48 horas hábiles. Para otras ciudades y municipios, entre 2 y 4 días hábiles.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>¿Cómo elijo mi talla si nunca he usado fajas colombianas?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-item-body">
+                        <p>Utiliza nuestra calculadora de tallas disponible en esta página midiendo tu cintura y cadera en centímetros. Si estás entre dos tallas o es tu primera vez usando fajas de Powernet, te aconsejamos elegir la talla superior o consultarnos por WhatsApp.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-item-header">
+                        <span>¿Cómo debo lavar y cuidar mi faja de Powernet?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-item-body">
+                        <p>Lávala a mano con agua fría y jabón suave. No uses blanqueador ni secadora caliente para mantener la compresión de las fibras elásticas y los nutrientes del forro con aloe vera.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         CLUB VIP TU FIGURA YAA (MEMBRESÍA ANUAL 30% OFF)
+         ========================================================= -->
+    <section class="vip-club-section" id="vipClub">
+        <div class="container">
+            <div class="vip-club-presentation-card">
+                <div class="vip-badge-row">
+                    <span class="badge badge-gold">👑 Membresía Anual Exclusiva</span>
+                    <span class="vip-active-indicator hidden" id="vipStatusActiveBadge">✓ Tu Membresía está Activa</span>
+                </div>
+
+                <h2 class="vip-card-title">Club VIP Tu Figura Yaa</h2>
+                <p class="vip-card-subtitle">
+                    Disfruta de un <strong>30% de descuento automático en TODOS los productos</strong> de la tienda durante 1 año completo.
+                </p>
+
+                <div class="vip-pricing-dual-box">
+                    <div class="vip-price-country" id="vipPriceCardCO">
+                        <div class="vip-country-header">
+                            <span class="vip-flag">🇨🇴</span>
+                            <span class="vip-country-title">Colombia</span>
+                        </div>
+                        <div class="vip-price-figure">$100.000 <small>COP / Año</small></div>
+                        <span class="vip-period-tag">Vigencia por 1 Año Completo</span>
+                    </div>
+
+                    <div class="vip-price-divider">o</div>
+
+                    <div class="vip-price-country" id="vipPriceCardMX">
+                        <div class="vip-country-header">
+                            <span class="vip-flag">🇲🇽</span>
+                            <span class="vip-country-title">México</span>
+                        </div>
+                        <div class="vip-price-figure">$500 <small>MXN / Año</small></div>
+                        <span class="vip-period-tag">Vigencia por 1 Año Completo</span>
+                    </div>
+                </div>
+
+                <div class="vip-perks-grid">
+                    <div class="vip-perk-item">
+                        <div class="vip-perk-icon">✨</div>
+                        <div class="vip-perk-text">
+                            <h4>30% OFF en Todo el Catálogo</h4>
+                            <p>Descuento ilimitado en fajas postquirúrgicas, moldeadoras y Línea Dorada todo el año.</p>
+                        </div>
+                    </div>
+                    <div class="vip-perk-item">
+                        <div class="vip-perk-icon">⏳</div>
+                        <div class="vip-perk-text">
+                            <h4>Duración de 1 Año</h4>
+                            <p>Tu membresía te acompaña durante 12 meses enteros de reducción y moldeo.</p>
+                        </div>
+                    </div>
+                    <div class="vip-perk-item">
+                        <div class="vip-perk-icon">👑</div>
+                        <div class="vip-perk-text">
+                            <h4>Lanzamientos Exclusivos</h4>
+                            <p>Acceso prioritario a nuevas referencias antes de salir al público general.</p>
+                        </div>
+                    </div>
+                    <div class="vip-perk-item">
+                        <div class="vip-perk-icon">💬</div>
+                        <div class="vip-perk-text">
+                            <h4>Asesoría Preferencial 24/7</h4>
+                            <p>Atención directa por WhatsApp en Colombia (+57) y México (+52) sin esperas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vip-cta-box" id="vipCtaBox">
+                    <button type="button" class="btn btn-gold btn-large" id="btnJoinVipClub" onclick="activateVipMembership()">
+                        <span>👑 Adquirir Membresía Club VIP (Activar 30% OFF)</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </button>
+                    <p class="vip-guarantee-note">
+                        🔒 Tarifa anual: $100.000 COP en Colombia / $500 MXN en México. El 30% de descuento se activará y reflejará al instante en tu carrito y catálogo.
+                    </p>
+                </div>
+
+                <!-- Estado cuando ya es miembro VIP -->
+                <div class="vip-active-status-card hidden" id="vipActiveCard">
+                    <div class="vip-active-inner">
+                        <div class="vip-active-seal">👑</div>
+                        <div>
+                            <h4>¡Eres Socia Activa del Club Tu Figura Yaa!</h4>
+                            <p>Tienes habilitado el <strong>30% de descuento en todos los productos</strong> por 1 año.</p>
+                            <span class="vip-expiry-note" id="vipExpiryText">Vigencia activa durante 365 días.</span>
+                        </div>
+                        <button type="button" class="btn btn-outline-gold btn-sm" onclick="cancelVipMembership()">Pausar Membresía</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand-logo-footer">
+                        <img src="../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg" 
+                             onerror="this.src='file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789619569885.jpg'" 
+                             alt="Tu Figura Yaa Colombia" 
+                             class="brand-logo-badge">
+                        <div class="brand-typography-stack">
+                            <span class="brand-typo-tu">Tú</span>
+                            <span class="brand-typo-figura-yaa">Figura Yaa</span>
+                            <span class="brand-typo-colombia">COLOMBIA</span>
+                        </div>
+                    </div>
+                    <p>La marca de fajas de lujo y compresión médica que acompaña tu transformación con elegancia, tecnología y respeto por tus curvas.</p>
+                    
+                    <div class="footer-social-links">
+                        <a href="#" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" aria-label="Facebook">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="TikTok">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="#catalogo">Catálogo Completo</a></li>
+                        <li><a href="#categorias">Líneas de Fajas</a></li>
+                        <li><a href="#fundadora">Nuestra Fundadora</a></li>
+                        <li><a href="#vipClub">Club VIP (30% OFF)</a></li>
+                        <li><a href="#guia-tallas" class="open-size-modal-btn">Calculadora de Tallas</a></li>
+                        <li><a href="#beneficios">Tecnología Powernet</a></li>
+                        <li><a href="#testimonios">Opiniones & Fotos de Clientas</a></li>
+                        <li><a href="#nosotros">Sobre la Marca</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Políticas & Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Envíos Nacionales</a></li>
+                        <li><a href="#">Cambios y Garantías Higiénicas</a></li>
+                        <li><a href="#">Aviso de Privacidad / Habeas Data</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Métodos de Pago Aceptados</h4>
+                    <p class="text-sm text-muted" style="margin-bottom: 0.75rem;">Aceptamos pagos seguros en moneda local:</p>
+                    
+                    <div class="footer-payment-methods">
+                        <span class="payment-badge">💵 Contra Entrega (Exclusivo Cali y San Luis Potosí)</span>
+                        <span class="payment-badge">🏪 OXXO Pay (México)</span>
+                        <span class="payment-badge">🏦 SPEI (México)</span>
+                        <span class="payment-badge">📲 Nequi / Daviplata (Colombia)</span>
+                        <span class="payment-badge">🏛️ Bancolombia</span>
+                        <span class="payment-badge">💳 Mercado Pago</span>
+                        <span class="payment-badge">🔒 PSE / Wompi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner de Asesoría Directa por WhatsApp para Colombia y México -->
+            <div class="footer-whatsapp-banner">
+                <div class="footer-whatsapp-info">
+                    <h4>💬 Asesoría Personalizada y Pedidos por WhatsApp</h4>
+                    <p>Habla directamente con nuestras asesoras expertas según tu país de residencia:</p>
+                </div>
+                <div class="footer-whatsapp-buttons">
+                    <a href="https://wa.me/573173142714" target="_blank" class="footer-whatsapp-chip" title="Contactar Asesora en Colombia">
+                        <span class="chip-flag">🇨🇴</span>
+                        <div class="chip-content">
+                            <span class="chip-country">Colombia WhatsApp</span>
+                            <span class="chip-number">+57 317 314 27 14</span>
+                        </div>
+                    </a>
+                    <a href="https://wa.me/524444971505" target="_blank" class="footer-whatsapp-chip" title="Contactar Asesora en México">
+                        <span class="chip-flag">🇲🇽</span>
+                        <div class="chip-content">
+                            <span class="chip-country">México WhatsApp</span>
+                            <span class="chip-number">+52 4444971505</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tu Figura Yaa. Todos los derechos reservados. Presencia oficial en Colombia y México.</p>
+                <p class="gold-text">Auténtico Powernet Colombiano • Envíos Seguros y Garantizados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         SLIDE-OVER CARRITO LATERAL
+         ========================================================= -->
+    <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Carrito de Compras">
+        <div class="cart-drawer-header">
+            <h3 class="cart-drawer-title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Tu Carrito</span>
+            </h3>
+            <button type="button" class="btn-close-drawer" id="closeCartDrawerBtn" title="Cerrar carrito">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div class="free-shipping-bar-container">
+            <p class="free-shipping-notice" id="freeShippingNotice">
+                Calculando envío gratis...
+            </p>
+            <div class="progress-track">
+                <div class="progress-fill" id="freeShippingBarFill"></div>
+            </div>
+        </div>
+
+        <div class="cart-drawer-body">
+            <div class="cart-drawer-items" id="cartDrawerItems"></div>
+
+            <div class="cart-drawer-empty hidden" id="cartDrawerEmpty">
+                <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <h4>Tu carrito está vacío</h4>
+                <p>Descubre nuestra colección de fajas colombianas y comienza a moldear tu figura.</p>
+                <button type="button" class="btn btn-outline-gold btn-sm" onclick="closeCartDrawer(); document.getElementById('catalogo').scrollIntoView({behavior:'smooth'});">
+                    Ver Catálogo
+                </button>
+            </div>
+        </div>
+
+        <div class="cart-drawer-footer" id="cartDrawerFooter">
+            <!-- Caja de cupones temporalmente oculta según solicitud -->
+            <div class="coupon-box" style="display: none;">
+                <input type="text" class="coupon-input" id="couponCodeInput" placeholder="Código de cupón">
+                <button type="button" class="btn btn-outline btn-sm" id="applyCouponBtn">Aplicar</button>
+            </div>
+
+            <div class="cart-totals-summary">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <strong id="cartSubtotalVal">$ 0</strong>
+                </div>
+                <div class="total-row hidden" id="cartDiscountRow">
+                    <span class="gold-text">Descuento aplicado:</span>
+                    <strong class="gold-text" id="cartDiscountVal">-$ 0</strong>
+                </div>
+                <div class="total-row">
+                    <span>Envío nacional:</span>
+                    <strong id="cartShippingVal">Calculando...</strong>
+                </div>
+                <div class="total-row grand-total">
+                    <span>Total a Pagar:</span>
+                    <strong class="gold-text" id="cartTotalVal">$ 0</strong>
+                </div>
+            </div>
+
+            <div class="cart-footer-actions">
+                <button type="button" class="btn btn-gold btn-large" id="goToCheckoutBtn">
+                    Proceder al Checkout
+                </button>
+                <button type="button" class="btn btn-whatsapp" id="cartWhatsAppFastBtn">
+                    Pedir Todo Directo por WhatsApp
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- =========================================================
+         MODAL GUÍA Y CALCULADORA DE TALLAS
+         ========================================================= -->
+    <div class="modal-backdrop" id="sizeGuideModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">📏 Calculadora & Guía de Tallas Anatómica</h3>
+                <button type="button" class="modal-close-btn" onclick="closeSizeCalculatorModal()">✕</button>
+            </div>
+
+            <div class="modal-body">
+                <p class="text-sm text-secondary" style="margin-bottom: 1.25rem;">
+                    Ingresa tus medidas corporales en centímetros usando una cinta métrica sobre la piel para determinar tu talla exacta en <strong>Powernet de alta compresión</strong>.
+                </p>
+
+                <form id="sizeCalculatorForm">
+                    <div class="calc-form-grid">
+                        <div class="form-group">
+                            <label class="form-label">Cintura en cm (*Medida clave):</label>
+                            <input type="number" class="form-input" id="calcWaist" placeholder="Ej: 72" min="50" max="150" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Cadera en cm (Parte más ancha):</label>
+                            <input type="number" class="form-input" id="calcHip" placeholder="Ej: 98" min="70" max="160" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 0.85rem;">
+                        <label class="form-label">¿Cuál es tu objetivo o tipo de uso?:</label>
+                        <select class="form-select" id="calcGoal">
+                            <option value="general">✨ Figura Reloj de Arena & Moldeado Diario</option>
+                            <option value="postquirurgica">🩺 Recuperación Postquirúrgica / Postparto</option>
+                            <option value="cintura_varillas">⏳ Cintura Avispa Extrema (13 Varillas)</option>
+                            <option value="corset">👑 Corsetería de Lujo & Alta Definición</option>
+                            <option value="levanta_cola">🍑 Realce de Glúteos & Control de Abdomen</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-checkbox-label">
+                            <input type="checkbox" id="calcExperienced">
+                            <span>Ya tengo experiencia previa usando fajas colombianas de compresión alta</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-gold" style="width: 100%;">
+                        Calcular Mi Talla y Faja Perfecta ✨
+                    </button>
+                </form>
+
+                <div id="sizeCalculatorResult" class="hidden"></div>
+
+                <h4 style="font-family: var(--font-heading); color: #fff; margin-top: 2rem; font-size: 1.1rem;">Tabla Oficial de Medidas Powernet</h4>
+                <div class="size-table-wrapper">
+                    <table class="size-table">
+                        <thead>
+                            <tr>
+                                <th>Talla</th>
+                                <th>Cintura (cm)</th>
+                                <th>Cadera (cm)</th>
+                                <th>Busto (cm)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>2XS</strong></td><td>55 - 61</td><td>80 - 86</td><td>78 - 84</td></tr>
+                            <tr><td><strong>XS</strong></td><td>62 - 68</td><td>87 - 93</td><td>85 - 91</td></tr>
+                            <tr><td><strong>S</strong></td><td>69 - 75</td><td>94 - 100</td><td>92 - 97</td></tr>
+                            <tr><td><strong>M</strong></td><td>76 - 82</td><td>101 - 107</td><td>98 - 103</td></tr>
+                            <tr><td><strong>L</strong></td><td>83 - 89</td><td>108 - 114</td><td>104 - 109</td></tr>
+                            <tr><td><strong>XL</strong></td><td>90 - 97</td><td>115 - 122</td><td>110 - 116</td></tr>
+                            <tr><td><strong>2XL</strong></td><td>98 - 106</td><td>123 - 130</td><td>117 - 124</td></tr>
+                            <tr><td><strong>3XL</strong></td><td>107 - 118</td><td>131 - 142</td><td>125 - 134</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         MODAL VISTA RÁPIDA (QUICK VIEW)
+         ========================================================= -->
+    <div class="modal-backdrop" id="quickViewModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <span class="modal-title">Detalle del Producto</span>
+                <button type="button" class="modal-close-btn" onclick="closeQuickView()">✕</button>
+            </div>
+            <div class="modal-body" id="quickViewContent"></div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         MODAL DE CHECKOUT BINACIONAL (COLOMBIA & MÉXICO)
+         ========================================================= -->
+    <div class="modal-backdrop" id="checkoutModal">
+        <div class="modal-container checkout-modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title">🛍️ Finalizar Pedido Seguro</h3>
+                <button type="button" class="modal-close-btn" onclick="closeCheckoutModal()">✕</button>
+            </div>
+
+            <div class="modal-body" id="checkoutModalBody">
+                <div class="checkout-grid">
+                    <!-- Formulario dinámico según país -->
+                    <div class="checkout-form-col">
+                        <h4 class="checkout-section-title">
+                            <span>1. Datos Para el Envío</span>
+                        </h4>
+
+                        <form id="checkoutForm">
+                            <div class="form-group" style="margin-bottom: 0.75rem;">
+                                <label class="form-label">Nombre Completo (*):</label>
+                                <input type="text" class="form-input" id="checkoutName" placeholder="Ej: Marcela Montoya" required>
+                            </div>
+
+                            <div class="calc-form-grid" style="margin-bottom: 0.75rem;">
+                                <div class="form-group">
+                                    <label class="form-label">WhatsApp / Móvil (*):</label>
+                                    <input type="tel" class="form-input" id="checkoutPhone" placeholder="Ej: 4444971505 o 3173142714" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Correo Electrónico:</label>
+                                    <input type="email" class="form-input" id="checkoutEmail" placeholder="tucorreo@ejemplo.com">
+                                </div>
+                            </div>
+
+                            <!-- Contenedor dinámico para campos específicos de Colombia o México -->
+                            <div id="checkoutDynamicFormFields">
+                                <!-- Renderizado por checkout.js según el país -->
+                            </div>
+
+                            <!-- Métodos de pago dinámicos -->
+                            <h4 class="checkout-section-title" style="margin-top: 1.5rem;">
+                                <span>2. Método de Pago</span>
+                            </h4>
+
+                            <!-- Opciones de radio dinámicas -->
+                            <div class="payment-options-group" id="checkoutPaymentOptionsGroup">
+                                <!-- Renderizado por checkout.js según el país -->
+                            </div>
+
+                            <!-- Ficha de detalles del pago (OXXO reference, SPEI CLABE, Nequi/Bancolombia) -->
+                            <div id="checkoutPaymentDetailsContainer"></div>
+
+                            <button type="submit" class="btn btn-gold btn-large" style="width: 100%; margin-top: 1.75rem;">
+                                Confirmar y Despachar Mi Pedido
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Resumen lateral -->
+                    <div class="checkout-summary-col">
+                        <div class="order-highlight-box" style="margin-top: 0;">
+                            <h4 style="font-family: var(--font-heading); color: #fff; margin-bottom: 0.75rem;">Resumen de Compra</h4>
+                            <p class="text-sm text-secondary">Estás ordenando: <strong id="checkoutSummaryCount">0 productos</strong></p>
+                            <div style="border-top: 1px solid var(--border-subtle); margin: 0.85rem 0; padding-top: 0.85rem;">
+                                <span class="text-sm">Total con Envío:</span>
+                                <h3 class="gold-gradient-text" id="checkoutSummaryTotal" style="font-size: 1.5rem; margin-top: 0.25rem;">$ 0</h3>
+                            </div>
+                            <p class="text-sm text-muted">✓ Garantía oficial de satisfacción</p>
+                            <p class="text-sm text-muted">✓ Powernet 100% Original</p>
+                            <p class="text-sm text-muted">✓ Notificación por WhatsApp</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         BOTÓN FLOTANTE OFICIAL DE WHATSAPP
+         ========================================================= -->
+    <a href="https://wa.me/573173142714" target="_blank" class="floating-whatsapp-btn" id="floatingWhatsApp" aria-label="Hablar con Asesora en WhatsApp">
+        <div class="whatsapp-pulse"></div>
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-5.805 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+        <span class="whatsapp-tooltip">💬 ¿Dudas con tu talla? Habla con una Asesora</span>
+    </a>
+
+    <!-- =========================================================
+         SCRIPTS DE LA TIENDA
+         ========================================================= -->
+    <script src="js/config.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/size-calculator.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/enhancements.js"></script>
+
+    <!-- Helper interactivo para banners de categoría -->
+    <script>
+        function selectCategoryFilter(catId) {
+            AppState.activeCategory = catId;
+            const container = document.getElementById("categoryTabs");
+            if (container) {
+                container.querySelectorAll(".filter-tab").forEach(btn => {
+                    btn.classList.toggle("active", btn.dataset.category === catId);
+                });
+            }
+            renderProducts();
+            document.getElementById("catalogo").scrollIntoView({ behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>
