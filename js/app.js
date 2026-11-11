@@ -315,7 +315,6 @@ function renderProducts() {
     grid.innerHTML = products.map(product => {
         const currentPrice = getProductPrice(product, countryCode);
         const origPrice = getProductOriginalPrice(product, countryCode);
-        const fallbackUri = `file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/${product.image.replace(/.*brain\/f12024de-9e4a-4cdd-997e-f435f1d74ff8\//, '')}`;
 
         return `
             <div class="product-card" data-product-id="${product.id}">
@@ -324,8 +323,7 @@ function renderProducts() {
                 </div>
 
                 <div class="product-image-container" onclick="openQuickView('${product.id}')">
-                    <img src="${product.image}" alt="${product.name}" class="product-img-main" loading="lazy" 
-                         onerror="this.onerror=null; this.src='${fallbackUri}';">
+                    <img src="${product.image}" alt="${product.name}" class="product-img-main" loading="lazy">
                     <button class="btn-quick-view" type="button" onclick="event.stopPropagation(); openQuickView('${product.id}')">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -669,15 +667,14 @@ function openQuickView(productId) {
 
     let selectedSize = product.sizes[0];
     let selectedColor = product.colors[0].name;
-    const fallbackUri = `file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/${product.image.replace(/.*brain\/f12024de-9e4a-4cdd-997e-f435f1d74ff8\//, '')}`;
 
     content.innerHTML = `
         <div class="quick-view-grid">
             <div class="qv-gallery">
-                <img src="${product.image}" id="qvMainImage" class="qv-main-img" alt="${product.name}" onerror="this.onerror=null; this.src='${fallbackUri}';">
+                <img src="${product.image}" id="qvMainImage" class="qv-main-img" alt="${product.name}">
                 <div class="qv-thumbs">
-                    <img src="${product.image}" class="qv-thumb active" onclick="document.getElementById('qvMainImage').src='${product.image}'" onerror="this.onerror=null; this.src='${fallbackUri}';">
-                    ${product.secondaryImage ? `<img src="${product.secondaryImage}" class="qv-thumb" onclick="document.getElementById('qvMainImage').src='${product.secondaryImage}'" onerror="this.onerror=null; this.src='${fallbackUri}';">` : ''}
+                    <img src="${product.image}" class="qv-thumb active" onclick="document.getElementById('qvMainImage').src='${product.image}'">
+                    ${product.secondaryImage ? `<img src="${product.secondaryImage}" class="qv-thumb" onclick="document.getElementById('qvMainImage').src='${product.secondaryImage}'">` : ''}
                 </div>
             </div>
 
@@ -848,7 +845,6 @@ function renderSizeResult(result) {
     const faja = result.perfectFaja;
     const fajaObj = faja ? getProductById(faja.id) : null;
     const currentPrice = fajaObj ? getProductPrice(fajaObj, country.code) : (country.code === "MX" ? faja.priceMXN : faja.priceCOP);
-    const fallbackUri = faja ? `file:///C:/Users/sebas/.gemini/antigravity/brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/${faja.image.replace(/.*brain\/f12024de-9e4a-4cdd-997e-f435f1d74ff8\//, '')}` : '';
 
     box.innerHTML = `
         <div class="recommended-size-card">
@@ -1086,7 +1082,7 @@ const INITIAL_REVIEWS_DATA = [
         rating: 5,
         date: "Hace 2 días",
         comment: "Compré la REF. 705 para mi postoperatorio y ha sido la mejor inversión. La compresión del Powernet caleño es perfecta, no te maltrata y el forro de aloe vera cuida la piel. Me llegó a Cali al día siguiente con pago contra entrega y envío gratis.",
-        photo: "../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1789620499316.png",
+        photo: "images/media_1789620499316.png",
         verified: true
     },
     {
@@ -1097,7 +1093,7 @@ const INITIAL_REVIEWS_DATA = [
         rating: 5,
         date: "Hace 4 días",
         comment: "Vivo en San Luis Potosí y me entregaron el pedido el mismo día con pago contra entrega en efectivo. La Línea Dorada de 13 varillas te deja una cintura diminuta al instante sin doblarse al sentarse. ¡100% recomendada!",
-        photo: "../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1791927929390.jpg",
+        photo: "images/media_1791927929390.jpg",
         verified: true
     },
     {
@@ -1108,7 +1104,7 @@ const INITIAL_REVIEWS_DATA = [
         rating: 5,
         date: "Hace 1 semana",
         comment: "Adquirí la membresía del Club VIP por los $100.000 COP y con el 30% de descuento me ahorré más de lo que costó en mi primera orden. El corset levanta el busto y define la cintura de forma espectacular. ¡Amor total por el producto caleño!",
-        photo: "../../brain/f12024de-9e4a-4cdd-997e-f435f1d74ff8/.user_uploaded/media_1791927902887.png",
+        photo: "images/media_1791927902887.png",
         verified: true
     }
 ];

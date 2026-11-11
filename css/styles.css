@@ -589,6 +589,12 @@ button, input, select, textarea {
     letter-spacing: -0.01em;
 }
 
+.hero-brand-highlight {
+    font-size: clamp(2rem, 5.5vw, 3.5rem);
+    vertical-align: middle;
+    display: inline-block;
+}
+
 .hero-description {
     font-size: 1.1rem;
     color: var(--text-secondary);
