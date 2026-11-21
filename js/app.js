@@ -101,24 +101,16 @@ function updateUIForActiveCountry() {
                 <div class="announcement-ticker-item"><span>🇲🇽</span><span>Envíos a todo México • Pago Contra Entrega <strong>ÚNICAMENTE en San Luis Potosí</strong></span></div>
                 <div class="announcement-ticker-item"><span>✨</span><span>Envío <strong>GRATIS</strong> únicamente en <strong>San Luis Potosí</strong></span></div>
                 <div class="announcement-ticker-item"><span>💱</span><span>Tasa oficial exacta: <strong>1 MXN = $188.74 COP</strong></span></div>
-                <div class="announcement-ticker-item"><span>👑</span><span>Club VIP: <strong>$500 MXN / Año</strong> con <strong>30% OFF</strong> en todo</span></div>
+                <div class="announcement-ticker-item"><span>💳</span><span>Pagos Seguros: <strong>Transferencia BanCoppel & Tarjetas</strong></span></div>
             `;
         } else {
             announcementBar.innerHTML = `
                 <div class="announcement-ticker-item"><span>🚚</span><span>Envíos a toda Colombia • Pago Contra Entrega <strong>ÚNICAMENTE en Cali</strong></span></div>
                 <div class="announcement-ticker-item"><span>✨</span><span>Envío <strong>GRATIS</strong> únicamente en la ciudad de <strong>Cali</strong></span></div>
                 <div class="announcement-ticker-item"><span>🇨🇴</span><span>Auténtico <strong>Producto Caleño (Cali, Colombia)</strong></span></div>
-                <div class="announcement-ticker-item"><span>👑</span><span>Club VIP: <strong>$100.000 COP / Año</strong> con <strong>30% OFF</strong> en todo</span></div>
+                <div class="announcement-ticker-item"><span>📲</span><span>Pagos Seguros: <strong>Nequi, Daviplata y Bancolombia</strong></span></div>
             `;
         }
-    }
-
-    // Resaltar tarjeta VIP según el país activo
-    const cardCO = document.getElementById("vipPriceCardCO");
-    const cardMX = document.getElementById("vipPriceCardMX");
-    if (cardCO && cardMX) {
-        cardCO.classList.toggle("selected-country-vip", country.code === "CO");
-        cardMX.classList.toggle("selected-country-vip", country.code === "MX");
     }
 
     // Botón flotante de WhatsApp oficial
@@ -348,20 +340,8 @@ function renderProducts() {
                     </div>
 
                     <div class="product-pricing">
-                        ${(typeof isVipMember === "function" && isVipMember()) ? `
-                            <span class="price-original" style="text-decoration: line-through; color: var(--text-muted); font-size: 0.9rem;">${formatPrice(currentPrice, countryCode)}</span>
-                            <span class="price-current gold-gradient-text font-bold" style="font-size: 1.35rem;">${formatPrice(Math.round(currentPrice * 0.70), countryCode)}</span>
-                            <span class="badge badge-gold" style="font-size: 0.65rem; padding: 0.15rem 0.45rem;">👑 30% OFF VIP</span>
-                        ` : `
-                            <span class="price-current">${formatPrice(currentPrice, countryCode)}</span>
-                        `}
+                        <span class="price-current">${formatPrice(currentPrice, countryCode)}</span>
                     </div>
-
-                    ${!(typeof isVipMember === "function" && isVipMember()) ? `
-                        <div class="vip-member-teaser" onclick="document.getElementById('vipClub').scrollIntoView({behavior:'smooth'})" title="Únete al Club VIP por 1 año y compra al 30% OFF">
-                            <span>👑 Club VIP: <strong class="gold-text">${formatPrice(Math.round(currentPrice * 0.70), countryCode)}</strong> <small class="gold-text">(30% OFF)</small></span>
-                        </div>
-                    ` : ''}
 
                     <div class="product-selectors">
                         <div class="selector-row">
@@ -595,42 +575,10 @@ function renderCartDrawer(summary) {
     if (discountRow && discountEl) {
         if (summary.discount > 0) {
             discountRow.classList.remove("hidden");
-            if (summary.isVipMember) {
-                discountRow.querySelector("span").textContent = "👑 Descuento Club VIP (30%):";
-            } else {
-                discountRow.querySelector("span").textContent = "Descuento aplicado:";
-            }
+            discountRow.querySelector("span").textContent = "Descuento aplicado:";
             discountEl.textContent = `-${formatPrice(summary.discount, country.code)}`;
         } else {
             discountRow.classList.add("hidden");
-        }
-    }
-
-    // Banner VIP en el carrito
-    let vipDrawerNotice = document.getElementById("cartDrawerVipNotice");
-    if (!vipDrawerNotice && footer) {
-        vipDrawerNotice = document.createElement("div");
-        vipDrawerNotice.id = "cartDrawerVipNotice";
-        footer.insertBefore(vipDrawerNotice, footer.firstChild);
-    }
-    if (vipDrawerNotice) {
-        if (summary.isVipMember) {
-            vipDrawerNotice.innerHTML = `
-                <div class="cart-vip-active-banner">
-                    <span>👑 <strong>Socia Club VIP Activa:</strong> 30% de descuento aplicado en todo tu pedido.</span>
-                </div>
-            `;
-        } else {
-            const vipPrice = STORE_CONFIG.vipClub.prices[country.code];
-            vipDrawerNotice.innerHTML = `
-                <div class="cart-vip-invite-banner">
-                    <div>
-                        <strong>👑 ¿Deseas 30% OFF en este pedido?</strong>
-                        <p>Únete al Club VIP por ${formatPrice(vipPrice, country.code)} (válido por 1 año completo).</p>
-                    </div>
-                    <button type="button" class="btn btn-gold btn-sm" onclick="activateVipMembership()">Activar 30%</button>
-                </div>
-            `;
         }
     }
 
@@ -662,8 +610,6 @@ function openQuickView(productId) {
     const countryCode = getActiveCountryCode();
     const currentPrice = getProductPrice(product, countryCode);
     const origPrice = getProductOriginalPrice(product, countryCode);
-    const isVip = typeof isVipMember === "function" && isVipMember();
-    const vipPrice = Math.round(currentPrice * 0.70);
 
     let selectedSize = product.sizes[0];
     let selectedColor = product.colors[0].name;
@@ -693,19 +639,8 @@ function openQuickView(productId) {
                 </div>
 
                 <div class="qv-pricing">
-                    ${isVip ? `
-                        <span class="price-original" style="text-decoration: line-through; color: var(--text-muted); font-size: 1.05rem;">${formatPrice(currentPrice, countryCode)}</span>
-                        <span class="price-current gold-gradient-text font-bold" style="font-size: 1.6rem;">${formatPrice(vipPrice, countryCode)}</span>
-                        <span class="badge badge-gold">👑 30% OFF Club VIP</span>
-                    ` : `
-                        <span class="price-current">${formatPrice(currentPrice, countryCode)}</span>
-                    `}
+                    <span class="price-current">${formatPrice(currentPrice, countryCode)}</span>
                 </div>
-                ${!isVip ? `
-                    <div class="vip-member-teaser" style="margin-top: -0.35rem; margin-bottom: 1rem; cursor: pointer;" onclick="closeQuickView(); document.getElementById('vipClub').scrollIntoView({behavior:'smooth'})">
-                        <span>👑 Precio Club VIP: <strong class="gold-text">${formatPrice(vipPrice, countryCode)}</strong> <small class="gold-text">(30% OFF con membresía)</small></span>
-                    </div>
-                ` : ''}
 
                 <p class="qv-desc">${product.shortDescription}</p>
 
@@ -1037,35 +972,7 @@ function showToast(message) {
  * =============================================================
  */
 function updateVipUI() {
-    const isVip = typeof isVipMember === "function" && isVipMember();
-    const navVipBadge = document.getElementById("navVipBadge");
-    const activeBadge = document.getElementById("vipStatusActiveBadge");
-    const ctaBox = document.getElementById("vipCtaBox");
-    const activeCard = document.getElementById("vipActiveCard");
-    const expiryText = document.getElementById("vipExpiryText");
-
-    if (navVipBadge) {
-        navVipBadge.classList.toggle("hidden", !isVip);
-    }
-
-    if (activeBadge) {
-        activeBadge.classList.toggle("hidden", !isVip);
-    }
-
-    if (ctaBox && activeCard) {
-        if (isVip) {
-            ctaBox.classList.add("hidden");
-            activeCard.classList.remove("hidden");
-            const info = getVipMembershipInfo();
-            if (info && info.expiry && expiryText) {
-                const dateObj = new Date(info.expiry);
-                expiryText.textContent = `Vigencia de tu membresía activa hasta: ${dateObj.toLocaleDateString('es-CO', { year: 'numeric', month: 'long', day: 'numeric' })}.`;
-            }
-        } else {
-            ctaBox.classList.remove("hidden");
-            activeCard.classList.add("hidden");
-        }
-    }
+    // Membresías eliminadas según requerimiento
 }
 
 /**
@@ -1103,7 +1010,7 @@ const INITIAL_REVIEWS_DATA = [
         product: "Corset Reloj de Arena Escote Corazón (REF. 812)",
         rating: 5,
         date: "Hace 1 semana",
-        comment: "Adquirí la membresía del Club VIP por los $100.000 COP y con el 30% de descuento me ahorré más de lo que costó en mi primera orden. El corset levanta el busto y define la cintura de forma espectacular. ¡Amor total por el producto caleño!",
+        comment: "Hice el pago por transferencia Nequi y envié el comprobante por WhatsApp, me respondieron de inmediato y despacharon el mismo día. El corset levanta el busto y define la cintura de forma espectacular. ¡Amor total por el producto caleño!",
         photo: "images/media_1791927902887.png",
         verified: true
     }

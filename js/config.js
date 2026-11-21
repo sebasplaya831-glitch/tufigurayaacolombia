@@ -40,17 +40,18 @@ const STORE_CONFIG = {
                 nequi: {
                     name: "Nequi",
                     number: "317 314 2714",
-                    holder: "Tu Figura Yaa SAS - NIT 901.458.321-4"
+                    holder: "YAA",
+                    image: "images/pago_colombia_nequi.jpg"
                 },
                 daviplata: {
                     name: "Daviplata",
                     number: "317 314 2714",
-                    holder: "Tu Figura Yaa SAS"
+                    holder: "YAA"
                 },
                 bancolombia: {
                     name: "Bancolombia Ahorros",
                     number: "048-998231-72",
-                    holder: "Tu Figura Yaa Colombia SAS (NIT 901.458.321-4)"
+                    holder: "Tu Figura Yaa Colombia SAS"
                 }
             },
             locations: {
@@ -101,16 +102,13 @@ const STORE_CONFIG = {
             },
             coupons: {},
             bankAccounts: {
-                spei: {
-                    name: "Transferencia SPEI Interbancaria",
-                    bank: "BBVA México",
-                    clabe: "012 180 015489723610",
-                    beneficiary: "Tu Figura Yaa México SA de CV"
-                },
-                oxxo: {
-                    name: "OXXO Pay",
-                    referenceDemo: "9348 2018 4729 11",
-                    instructions: "Paga en efectivo en cualquier tienda OXXO o 7-Eleven de la República."
+                bancoppel: {
+                    name: "BanCoppel Débito / Transferencia Bancaria",
+                    bank: "BanCoppel",
+                    cardNumber: "4169 1614 4795 5013",
+                    clabe: "137700105053226103",
+                    holder: "YAA",
+                    image: "images/pago_mexico_bancoppel.jpg"
                 },
                 mercadoPago: {
                     name: "Mercado Pago / Tarjetas",
@@ -151,17 +149,6 @@ const STORE_CONFIG = {
                 "Baja California Sur": ["La Paz", "Los Cabos (San José del Cabo / Cabo San Lucas)"],
                 "Tlaxcala": ["Tlaxcala", "Apizaco", "Huamantla"]
             }
-        }
-    },
-
-    // Configuración oficial del Club VIP Tu Figura Yaa
-    vipClub: {
-        name: "Club VIP Tu Figura Yaa",
-        discountPercent: 30, // 30% OFF en todos los productos
-        durationDays: 365,   // Membresía con duración de 1 año
-        prices: {
-            CO: 100000,      // $100.000 COP
-            MX: 500          // $500 MXN
         }
     }
 };
@@ -226,77 +213,21 @@ function convertCOPtoMXN(amountCOP) {
 }
 
 // ====================================================================
-// HELPERS DEL CLUB VIP (MEMBRESÍA ANUAL CON 30% OFF)
+// HELPERS RETROCOMPATIBLES (MEMBRESÍAS DESACTIVADAS)
 // ====================================================================
 function isVipMember() {
-    try {
-        const raw = localStorage.getItem("tufigura_vip_membership");
-        if (!raw) return false;
-        const data = JSON.parse(raw);
-        if (!data || !data.active) return false;
-        if (data.expiry && new Date(data.expiry) < new Date()) {
-            localStorage.removeItem("tufigura_vip_membership");
-            return false;
-        }
-        return true;
-    } catch (e) {
-        return false;
-    }
+    return false;
 }
 
 function getVipMembershipInfo() {
-    try {
-        const raw = localStorage.getItem("tufigura_vip_membership");
-        if (!raw) return null;
-        return JSON.parse(raw);
-    } catch (e) {
-        return null;
-    }
+    return null;
 }
 
 function activateVipMembership() {
-    const country = getActiveCountry();
-    const now = new Date();
-    const expiry = new Date();
-    expiry.setFullYear(now.getFullYear() + 1); // 1 año de duración
-
-    const membershipData = {
-        active: true,
-        startDate: now.toISOString(),
-        expiry: expiry.toISOString(),
-        discountPercent: 30,
-        countryCode: country.code,
-        pricePaid: STORE_CONFIG.vipClub.prices[country.code] || 100000
-    };
-
-    try {
-        localStorage.setItem("tufigura_vip_membership", JSON.stringify(membershipData));
-    } catch (e) {}
-
-    if (typeof updateVipUI === "function") updateVipUI();
-    if (typeof renderProducts === "function") renderProducts();
-    if (typeof cart !== "undefined" && typeof renderCartDrawer === "function") {
-        cart.saveCart();
-        renderCartDrawer(cart.getSummary());
-    }
-    if (typeof showToast === "function") {
-        showToast(`👑 ¡Bienvenida al Club VIP Tu Figura Yaa! Tu 30% de Descuento en todos los productos está ACTIVO durante 1 año.`);
-    }
+    // Membresías eliminadas
 }
 
 function cancelVipMembership() {
-    try {
-        localStorage.removeItem("tufigura_vip_membership");
-    } catch (e) {}
-
-    if (typeof updateVipUI === "function") updateVipUI();
-    if (typeof renderProducts === "function") renderProducts();
-    if (typeof cart !== "undefined" && typeof renderCartDrawer === "function") {
-        cart.saveCart();
-        renderCartDrawer(cart.getSummary());
-    }
-    if (typeof showToast === "function") {
-        showToast("Membresía VIP pausada.");
-    }
+    // Membresías eliminadas
 }
 

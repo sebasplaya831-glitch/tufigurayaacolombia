@@ -1301,3 +1301,59 @@ input, select, textarea, button {
         -webkit-overflow-scrolling: touch;
     }
 }
+
+
+/* ====================================================================
+ * 7. RESPONSIVE PARA MÉTODOS DE PAGO CON TARJETA Y PANEL ADMIN
+ * ==================================================================== */
+@media (max-width: 640px) {
+    .payment-card-showcase-box {
+        padding: 0.9rem;
+    }
+
+    .payment-card-img-preview,
+    .confirmation-card-img {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .card-data-row {
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .card-data-row .data-val {
+        font-size: 0.88rem;
+    }
+
+    .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+
+    .admin-modal-container {
+        padding: 1rem;
+        width: 98%;
+    }
+
+    .btn-send-proof {
+        font-size: 0.95rem;
+        padding: 0.85rem 1rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-data-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-data-row .btn-copy-chip {
+        align-self: flex-start;
+        margin-top: 0.2rem;
+    }
+}

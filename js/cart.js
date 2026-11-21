@@ -141,7 +141,6 @@ class CartManager {
     getSummary(destinationCity = null) {
         const country = getActiveCountry();
         const count = this.items.reduce((acc, item) => acc + item.quantity, 0);
-        const vipActive = typeof isVipMember === "function" && isVipMember();
 
         // Mapear items con el precio actual en la moneda activa
         const enrichedItems = this.items.map(item => {
@@ -155,12 +154,6 @@ class CartManager {
         });
 
         const subtotal = enrichedItems.reduce((acc, item) => acc + item.totalPrice, 0);
-        
-        // Descuento oficial del Club VIP Tu Figura Yaa (30% OFF en todos los productos)
-        let vipDiscount = 0;
-        if (vipActive && subtotal > 0) {
-            vipDiscount = Math.round(subtotal * 0.30);
-        }
 
         // Descuento de cupón (si existiera)
         let couponDiscount = 0;
@@ -172,7 +165,7 @@ class CartManager {
             }
         }
 
-        const totalDiscount = vipDiscount + couponDiscount;
+        const totalDiscount = couponDiscount;
 
         // Envío según país y ciudad de destino (Gratis exclusivamente en Cali para CO y San Luis Potosí para MX)
         const freeCity = (country.shipping.freeShippingCity || "").toLowerCase();
@@ -188,9 +181,9 @@ class CartManager {
             count,
             subtotal,
             discount: totalDiscount,
-            vipDiscount: vipDiscount,
-            isVipMember: vipActive,
-            vipDiscountPercent: 30,
+            vipDiscount: 0,
+            isVipMember: false,
+            vipDiscountPercent: 0,
             appliedCoupon: this.appliedCoupon,
             shippingCost,
             isFreeShipping,
