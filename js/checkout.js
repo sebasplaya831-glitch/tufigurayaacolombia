@@ -154,7 +154,7 @@ class CheckoutManager {
                 <label class="payment-option-card" id="optionCardTransferenciaCO">
                     <input type="radio" name="paymentMethod" value="transferencia" id="radioTransferenciaCO" checked>
                     <div>
-                        <strong>📲 Transferencia Nequi / Daviplata / Bancolombia</strong>
+                        <strong>📲 Transferencia Nequi</strong>
                         <p class="text-sm text-muted">Paga de inmediato mediante Nequi al 317 314 2714 y envía tu comprobante.</p>
                     </div>
                 </label>
@@ -274,7 +274,7 @@ class CheckoutManager {
                     }
                     if (card) { card.style.opacity = "0.6"; card.style.pointerEvents = "none"; }
                     if (badge) { badge.textContent = "Exclusivo Cali (No disponible en tu ciudad)"; badge.className = "badge"; badge.style.background = "#555"; badge.style.color = "#fff"; }
-                    if (desc) desc.textContent = `No disponible en ${this.selectedCity}. El pago contra entrega es exclusivo para Cali. Para tu ciudad selecciona Transferencia Nequi/Daviplata o PSE.`;
+                    if (desc) desc.textContent = `No disponible en ${this.selectedCity}. El pago contra entrega es exclusivo para Cali. Para tu ciudad selecciona Transferencia Nequi o PSE.`;
                 }
             } else {
                 if (badge) badge.textContent = "Exclusivo Cali";
@@ -402,7 +402,7 @@ class CheckoutManager {
                         <div class="payment-card-data-rows">
                             <div class="bank-account-card">
                                 <div>
-                                    <small class="text-muted">Nequi / Daviplata:</small><br>
+                                    <small class="text-muted">Nequi:</small><br>
                                     <strong class="font-mono">317 314 2714</strong>
                                 </div>
                                 <button type="button" class="btn-copy-account" data-copy="3173142714">Copiar Nequi</button>
@@ -413,13 +413,6 @@ class CheckoutManager {
                                     <strong>YAA</strong>
                                 </div>
                                 <span class="badge badge-gold">Cuenta Oficial</span>
-                            </div>
-                            <div class="bank-account-card">
-                                <div>
-                                    <small class="text-muted">Bancolombia Ahorros:</small><br>
-                                    <strong class="font-mono">048-998231-72</strong>
-                                </div>
-                                <button type="button" class="btn-copy-account" data-copy="04899823172">Copiar Cuenta</button>
                             </div>
                         </div>
                         <p class="text-sm text-gold" style="margin-top: 0.5rem;">📸 Al hacer tu pago en Nequi, haz clic en "Enviar Comprobante" para adjuntar tu soporte por WhatsApp a la vendedora.</p>
@@ -464,7 +457,7 @@ class CheckoutManager {
         // Validación estricta de Contra Entrega: ÚNICAMENTE Cali y San Luis Potosí
         const cityLower = city.toLowerCase();
         if (this.selectedPaymentMethod === "contraentrega" && !cityLower.includes("cali")) {
-            alert(`El pago Contra Entrega está disponible ÚNICAMENTE en la ciudad de Cali. Para tu ciudad (${city}), por favor selecciona Transferencia Nequi / Bancolombia o PSE.`);
+            alert(`El pago Contra Entrega está disponible ÚNICAMENTE en la ciudad de Cali. Para tu ciudad (${city}), por favor selecciona Transferencia Nequi o PSE.`);
             return false;
         }
 
@@ -526,7 +519,7 @@ class CheckoutManager {
             bancoppel: "Transferencia Bancaria BanCoppel Débito / SPEI (México)",
             contraentrega_mx: "Pago Contra Entrega en Efectivo (Exclusivo San Luis Potosí)",
             mercadopago: "Tarjeta de Crédito / Débito (Mercado Pago)",
-            transferencia: "Transferencia Nequi / Bancolombia (Colombia)",
+            transferencia: "Transferencia Nequi (Colombia)",
             contraentrega: "Pago Contra Entrega en Efectivo (Exclusivo Cali)",
             tarjeta_pse: "Pasarela PSE / Tarjeta (Wompi)",
             whatsapp: "Coordinación y Asesoría Directa por WhatsApp"
@@ -700,7 +693,7 @@ ${addressText}
                                 </div>
                             ` : `
                                 <div class="bank-account-card">
-                                    <span>Nequi / Daviplata: <strong>317 314 2714</strong> (Titular: YAA)</span>
+                                    <span>Nequi: <strong>317 314 2714</strong> (Titular: YAA)</span>
                                     <button type="button" class="btn-copy-account" data-copy="3173142714">Copiar Nequi</button>
                                 </div>
                             `}

@@ -42,16 +42,6 @@ const STORE_CONFIG = {
                     number: "317 314 2714",
                     holder: "YAA",
                     image: "images/pago_colombia_nequi.jpg"
-                },
-                daviplata: {
-                    name: "Daviplata",
-                    number: "317 314 2714",
-                    holder: "YAA"
-                },
-                bancolombia: {
-                    name: "Bancolombia Ahorros",
-                    number: "048-998231-72",
-                    holder: "Tu Figura Yaa Colombia SAS"
                 }
             },
             locations: {

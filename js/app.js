@@ -108,7 +108,7 @@ function updateUIForActiveCountry() {
                 <div class="announcement-ticker-item"><span>🚚</span><span>Envíos a toda Colombia • Pago Contra Entrega <strong>ÚNICAMENTE en Cali</strong></span></div>
                 <div class="announcement-ticker-item"><span>✨</span><span>Envío <strong>GRATIS</strong> únicamente en la ciudad de <strong>Cali</strong></span></div>
                 <div class="announcement-ticker-item"><span>🇨🇴</span><span>Auténtico <strong>Producto Caleño (Cali, Colombia)</strong></span></div>
-                <div class="announcement-ticker-item"><span>📲</span><span>Pagos Seguros: <strong>Nequi, Daviplata y Bancolombia</strong></span></div>
+                <div class="announcement-ticker-item"><span>📲</span><span>Pagos Seguros: <strong>Nequi Oficial</strong></span></div>
             `;
         }
     }
