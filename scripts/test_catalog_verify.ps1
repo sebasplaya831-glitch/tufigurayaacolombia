@@ -1,4 +1,4 @@
-﻿# Script de verificación de precios y consistencia Tu Figura YAA
+# Script de verificación de precios y consistencia Tu Figura YAA
 $productsContent = Get-Content -Raw -Path "js\products.js"
 
 $expectedPrices = @{
@@ -47,3 +47,4 @@ try {
 } catch {
     Write-Host "Error conectando a Cloud DB: $_" -ForegroundColor Red
 }
+

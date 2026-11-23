@@ -1,4 +1,4 @@
-﻿# Sincronizar catálogo inicial a Cloud DB
+# Sincronizar catálogo inicial a Cloud DB
 $fileContent = Get-Content -Raw "js/products.js"
 
 # Extraer el array JSON de DEFAULT_PRODUCTS_DATA
@@ -21,3 +21,4 @@ $payload = @{
 $jsonBody = $payload | ConvertTo-Json -Depth 5
 $response = Invoke-RestMethod -Uri "https://api.restful-api.dev/objects/ff808181a09d98f701a20a7673c32bae" -Method Put -ContentType "application/json" -Body $jsonBody
 Write-Host "Cloud DB Inicializada con éxito: $($response.updatedAt)" -ForegroundColor Green
+

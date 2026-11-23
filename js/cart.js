@@ -122,7 +122,7 @@ class CartManager {
     applyCoupon(code) {
         const country = getActiveCountry();
         const cleanCode = (code || "").trim().toUpperCase();
-        
+
         if (country.coupons[cleanCode]) {
             const coupon = { code: cleanCode, ...country.coupons[cleanCode] };
             this.saveCoupon(coupon);
