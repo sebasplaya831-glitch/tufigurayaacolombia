@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <link rel="icon" type="image/jpeg" href="/images/media_1789619569885.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="/admin/admin.css">
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
 
     <!-- NOTIFICACIONES TOAST -->
@@ -28,22 +32,24 @@
             </div>
 
             <p class="admin-login-intro">
-                Ingresa con tus credenciales oficiales para gestionar el catálogo de productos de <strong>Colombia (COP)</strong> y <strong>México (MXN)</strong>.
+                Ingresa con tus credenciales oficiales para gestionar el catálogo de productos de <strong>Colombia
+                    (COP)</strong> y <strong>México (MXN)</strong>.
             </p>
 
             <form id="loginForm" class="admin-form" autocomplete="off">
                 <div class="admin-form-group">
                     <label for="loginEmail" class="admin-label">Correo Electrónico:</label>
-                    <input type="email" id="loginEmail" class="admin-input" required 
-                           placeholder="tufigurayaacolombia@gmail.com" value="tufigurayaacolombia@gmail.com">
+                    <input type="email" id="loginEmail" class="admin-input" required
+                        placeholder="tufigurayaacolombia@gmail.com" value="tufigurayaacolombia@gmail.com">
                 </div>
 
                 <div class="admin-form-group">
                     <label for="loginPassword" class="admin-label">Contraseña de Acceso:</label>
                     <div class="admin-password-wrap">
-                        <input type="password" id="loginPassword" class="admin-input" required 
-                               placeholder="Ingresa tu contraseña">
-                        <button type="button" class="btn-toggle-pwd" id="btnToggleLoginPwd" title="Mostrar/Ocultar contraseña">👁️</button>
+                        <input type="password" id="loginPassword" class="admin-input" required
+                            placeholder="Ingresa tu contraseña">
+                        <button type="button" class="btn-toggle-pwd" id="btnToggleLoginPwd"
+                            title="Mostrar/Ocultar contraseña">👁️</button>
                     </div>
                 </div>
 
@@ -87,7 +93,8 @@
                         <span class="user-icon">👤</span>
                         <span id="activeUserEmail">tufigurayaacolombia@gmail.com</span>
                     </span>
-                    <a href="/" target="_blank" class="admin-btn admin-btn-sm admin-btn-outline" title="Abrir tienda en nueva pestaña">
+                    <a href="/" target="_blank" class="admin-btn admin-btn-sm admin-btn-outline"
+                        title="Abrir tienda en nueva pestaña">
                         <span>🌐 Ver Tienda</span>
                     </a>
                     <button type="button" id="btnOpenChangePwdModal" class="admin-btn admin-btn-sm admin-btn-outline">
@@ -130,8 +137,8 @@
                 <div class="admin-toolbar-left">
                     <div class="admin-search-wrapper">
                         <span class="search-icon">🔍</span>
-                        <input type="text" id="adminSearchInput" class="admin-search-input" 
-                               placeholder="Buscar por nombre, referencia (REF) o palabra clave...">
+                        <input type="text" id="adminSearchInput" class="admin-search-input"
+                            placeholder="Buscar por nombre, referencia (REF) o palabra clave...">
                     </div>
                     <select id="adminCategoryFilter" class="admin-select">
                         <option value="all">Todas las Categorías</option>
@@ -145,8 +152,8 @@
                     <button type="button" id="btnOpenCreateProductModal" class="admin-btn admin-btn-gold">
                         <span>➕ Agregar Nuevo Producto</span>
                     </button>
-                    <button type="button" id="btnResetCatalog" class="admin-btn admin-btn-outline-danger" 
-                            title="Restaurar el catálogo original de 19 fajas si hubo algún error">
+                    <button type="button" id="btnResetCatalog" class="admin-btn admin-btn-outline-danger"
+                        title="Restaurar el catálogo original de 19 fajas si hubo algún error">
                         <span>↺ Restaurar Catálogo Base</span>
                     </button>
                 </div>
@@ -216,8 +223,8 @@
 
                 <div class="admin-form-group">
                     <label for="productName" class="admin-label">Nombre del Producto *:</label>
-                    <input type="text" id="productName" class="admin-input" required 
-                           placeholder="Ej: Faja Sisa Broches Short Medio (REF. 705)">
+                    <input type="text" id="productName" class="admin-input" required
+                        placeholder="Ej: Faja Sisa Broches Short Medio (REF. 705)">
                 </div>
 
                 <!-- PRECIOS POR PAÍS (COLOMBIA & MÉXICO) -->
@@ -228,16 +235,19 @@
                             <label for="productPriceCOP" class="admin-label">🇨🇴 Precio Colombia (COP) *:</label>
                             <div class="admin-input-prefix-wrap">
                                 <span class="input-prefix">$</span>
-                                <input type="number" id="productPriceCOP" class="admin-input" required min="1000" step="100" placeholder="Ej: 377480">
+                                <input type="number" id="productPriceCOP" class="admin-input" required min="1000"
+                                    step="100" placeholder="Ej: 377480">
                             </div>
-                            <small class="admin-field-tip">Precio en pesos colombianos para la tienda de Colombia.</small>
+                            <small class="admin-field-tip">Precio en pesos colombianos para la tienda de
+                                Colombia.</small>
                         </div>
 
                         <div class="admin-form-group">
                             <label for="productPriceMXN" class="admin-label">🇲🇽 Precio México (MXN) *:</label>
                             <div class="admin-input-prefix-wrap">
                                 <span class="input-prefix">$</span>
-                                <input type="number" id="productPriceMXN" class="admin-input" required min="10" step="10" placeholder="Ej: 2000">
+                                <input type="number" id="productPriceMXN" class="admin-input" required min="10"
+                                    step="10" placeholder="Ej: 2000">
                             </div>
                             <small class="admin-field-tip">Precio en pesos mexicanos para la tienda de México.</small>
                         </div>
@@ -245,11 +255,13 @@
 
                     <div class="admin-form-row admin-form-row-2">
                         <div class="admin-form-group">
-                            <label for="productOriginalCOP" class="admin-label">Precio Original Tachado COP (Opcional):</label>
+                            <label for="productOriginalCOP" class="admin-label">Precio Original Tachado COP
+                                (Opcional):</label>
                             <input type="number" id="productOriginalCOP" class="admin-input" placeholder="Ej: 462410">
                         </div>
                         <div class="admin-form-group">
-                            <label for="productOriginalMXN" class="admin-label">Precio Original Tachado MXN (Opcional):</label>
+                            <label for="productOriginalMXN" class="admin-label">Precio Original Tachado MXN
+                                (Opcional):</label>
                             <input type="number" id="productOriginalMXN" class="admin-input" placeholder="Ej: 2450">
                         </div>
                     </div>
@@ -265,34 +277,50 @@
                             <div class="admin-file-upload-label">
                                 <span class="admin-file-upload-icon">📸</span>
                                 <span class="admin-file-upload-text">Subir foto desde tu dispositivo</span>
-                                <span class="admin-file-upload-hint">JPG, PNG, WEBP — máx 10MB (se comprime automáticamente)</span>
+                                <span class="admin-file-upload-hint">JPG, PNG, WEBP — máx 10MB (se comprime
+                                    automáticamente)</span>
                             </div>
                         </div>
-                        <small class="admin-field-tip" style="margin-bottom:0.5rem;display:block;">O selecciona una foto del catálogo actual:</small>
-                        <select id="productImageSelect" class="admin-select" onchange="previewSelectedImage(this.value)">
-                            <option value="images/media_1789620499316.png">Faja REF. 705 (Sisa Broches Short Medio)</option>
-                            <option value="images/media_1789620505519.png">Faja REF. 712 (Brasier Integrado Short Medio)</option>
+                        <small class="admin-field-tip" style="margin-bottom:0.5rem;display:block;">O selecciona una foto
+                            del catálogo actual:</small>
+                        <select id="productImageSelect" class="admin-select"
+                            onchange="previewSelectedImage(this.value)">
+                            <option value="images/media_1789620499316.png">Faja REF. 705 (Sisa Broches Short Medio)
+                            </option>
+                            <option value="images/media_1789620505519.png">Faja REF. 712 (Brasier Integrado Short Medio)
+                            </option>
                             <option value="images/media_1789620521730.png">Faja REF. 702 (Pierna a la Rodilla)</option>
-                            <option value="images/media_1789620529762.png">Faja REF. 701 (Strapless Short Medio)</option>
-                            <option value="images/media_1789620536160.png">Faja REF. 724 (Manga 3/4 Espalda Total)</option>
+                            <option value="images/media_1789620529762.png">Faja REF. 701 (Strapless Short Medio)
+                            </option>
+                            <option value="images/media_1789620536160.png">Faja REF. 724 (Manga 3/4 Espalda Total)
+                            </option>
                             <option value="images/media_1790038884437.png">Faja REF. 902 (Reloj de Arena)</option>
-                            <option value="images/media_1790038895294.jpg">Faja REF. 905 (Cinturilla 9 Varillas)</option>
-                            <option value="images/media_1790038901653.png">Faja REF. 906 (Short Levanta Glúteos)</option>
+                            <option value="images/media_1790038895294.jpg">Faja REF. 905 (Cinturilla 9 Varillas)
+                            </option>
+                            <option value="images/media_1790038901653.png">Faja REF. 906 (Short Levanta Glúteos)
+                            </option>
                             <option value="images/media_1790038909269.png">Faja REF. 908 (Body Tanga Invisible)</option>
-                            <option value="images/media_1790038914311.png">Faja REF. 910 (Strapless Levanta Cola)</option>
+                            <option value="images/media_1790038914311.png">Faja REF. 910 (Strapless Levanta Cola)
+                            </option>
                             <option value="images/media_1791926399639.png">Faja REF. 914 (Chaleco Corrector)</option>
                             <option value="images/media_1791926416349.png">Faja REF. 918 (Enterizo Completo)</option>
                             <option value="images/media_1791926432029.jpg">Faja REF. 921 (Cinturilla Látex)</option>
                             <option value="images/media_1791926445816.png">Faja REF. 925 (Capri Moldeador)</option>
-                            <option value="images/media_1791927902887.png">Faja REF. 801 (Línea Dorada Reloj Arena)</option>
-                            <option value="images/media_1791927910806.png">Faja REF. 804 (Línea Dorada Busto Libre)</option>
-                            <option value="images/media_1791927923206.png">Faja REF. 807 (Línea Dorada Tirante Ancho)</option>
-                            <option value="images/media_1791927929390.jpg">Faja REF. 810 (Cinturilla Dorada 11 Varillas)</option>
-                            <option value="images/media_1791927935856.jpg">Faja REF. 813 (Chaleco Dorado 13 Varillas)</option>
+                            <option value="images/media_1791927902887.png">Faja REF. 801 (Línea Dorada Reloj Arena)
+                            </option>
+                            <option value="images/media_1791927910806.png">Faja REF. 804 (Línea Dorada Busto Libre)
+                            </option>
+                            <option value="images/media_1791927923206.png">Faja REF. 807 (Línea Dorada Tirante Ancho)
+                            </option>
+                            <option value="images/media_1791927929390.jpg">Faja REF. 810 (Cinturilla Dorada 11 Varillas)
+                            </option>
+                            <option value="images/media_1791927935856.jpg">Faja REF. 813 (Chaleco Dorado 13 Varillas)
+                            </option>
                             <option value="custom">Ingresar URL o ruta personalizada...</option>
                         </select>
                         <div id="customImageInputWrap" class="hidden" style="margin-top: 0.5rem;">
-                            <input type="text" id="productCustomImage" class="admin-input" placeholder="images/nombre_foto.jpg o https://...">
+                            <input type="text" id="productCustomImage" class="admin-input"
+                                placeholder="images/nombre_foto.jpg o https://...">
                         </div>
                         <div class="admin-image-preview-box">
                             <img id="modalImagePreview" src="../images/media_1789620499316.png" alt="Vista previa">
@@ -327,13 +355,15 @@
                     <div class="admin-form-row admin-form-row-2">
                         <div class="admin-form-group">
                             <label class="admin-checkbox-label" style="font-size:0.9rem;gap:0.5rem;">
-                                <input type="checkbox" id="availableCO" checked style="width:18px;height:18px;accent-color:var(--gold-primary);">
+                                <input type="checkbox" id="availableCO" checked
+                                    style="width:18px;height:18px;accent-color:var(--gold-primary);">
                                 🇨🇴 Disponible en Colombia (COP)
                             </label>
                         </div>
                         <div class="admin-form-group">
                             <label class="admin-checkbox-label" style="font-size:0.9rem;gap:0.5rem;">
-                                <input type="checkbox" id="availableMX" checked style="width:18px;height:18px;accent-color:var(--gold-primary);">
+                                <input type="checkbox" id="availableMX" checked
+                                    style="width:18px;height:18px;accent-color:var(--gold-primary);">
                                 🇲🇽 Disponible en México (MXN)
                             </label>
                         </div>
@@ -344,44 +374,55 @@
                     <label class="admin-label">Tallas Disponibles:</label>
                     <div class="admin-checkbox-group">
                         <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="XS"> XS</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="S" checked> S</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="M" checked> M</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="L" checked> L</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="XL" checked> XL</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="2XL" checked> 2XL</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="3XL" checked> 3XL</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="S" checked>
+                            S</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="M" checked>
+                            M</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="L" checked>
+                            L</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="XL" checked>
+                            XL</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="2XL" checked>
+                            2XL</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="3XL" checked>
+                            3XL</label>
                     </div>
                 </div>
 
                 <div class="admin-form-group">
                     <label class="admin-label">Colores Disponibles:</label>
                     <div class="admin-checkbox-group">
-                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Negro" checked> Negro (#111111)</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Miel / Beige" checked> Miel / Beige (#c99e69)</label>
-                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Moca"> Moca (#6b4c35)</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Negro" checked>
+                            Negro (#111111)</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Miel / Beige"
+                                checked> Miel / Beige (#c99e69)</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Moca"> Moca
+                            (#6b4c35)</label>
                     </div>
                 </div>
 
                 <div class="admin-form-group">
                     <label for="productDescription" class="admin-label">Descripción Corta del Producto:</label>
-                    <textarea id="productDescription" class="admin-textarea" rows="2" 
-                              placeholder="Breve reseña sobre los beneficios, materiales y forma de la faja..."></textarea>
+                    <textarea id="productDescription" class="admin-textarea" rows="2"
+                        placeholder="Breve reseña sobre los beneficios, materiales y forma de la faja..."></textarea>
                 </div>
 
                 <div class="admin-form-group">
-                    <label for="productFeatures" class="admin-label">Características & Beneficios (1 por renglón):</label>
-                    <textarea id="productFeatures" class="admin-textarea" rows="3" 
-                              placeholder="Powernet colombiano 100% original&#10;Costuras invisibles que no marcan&#10;Broches reforzados de ajuste gradual"></textarea>
+                    <label for="productFeatures" class="admin-label">Características & Beneficios (1 por
+                        renglón):</label>
+                    <textarea id="productFeatures" class="admin-textarea" rows="3"
+                        placeholder="Powernet colombiano 100% original&#10;Costuras invisibles que no marcan&#10;Broches reforzados de ajuste gradual"></textarea>
                 </div>
 
                 <div class="admin-form-group">
                     <label for="productIdealFor" class="admin-label">Uso Recomendado:</label>
-                    <input type="text" id="productIdealFor" class="admin-input" 
-                           placeholder="Ej: Postoperatorio, uso diario, eventos especiales y moldeado reloj de arena">
+                    <input type="text" id="productIdealFor" class="admin-input"
+                        placeholder="Ej: Postoperatorio, uso diario, eventos especiales y moldeado reloj de arena">
                 </div>
 
                 <div class="admin-modal-footer">
-                    <button type="button" class="admin-btn admin-btn-outline" id="btnCancelProductModal">Cancelar</button>
+                    <button type="button" class="admin-btn admin-btn-outline"
+                        id="btnCancelProductModal">Cancelar</button>
                     <button type="submit" class="admin-btn admin-btn-gold">Guardar Producto</button>
                 </div>
             </form>
@@ -400,25 +441,26 @@
 
             <form id="changePwdForm" class="admin-modal-body">
                 <p class="admin-field-tip" style="margin-bottom: 1rem;">
-                    Actualiza la clave de administración para <strong>tufigurayaacolombia@gmail.com</strong>. La contraseña será hasheada con SHA-256 de forma segura.
+                    Actualiza la clave de administración para <strong>tufigurayaacolombia@gmail.com</strong>. La
+                    contraseña será hasheada con SHA-256 de forma segura.
                 </p>
 
                 <div class="admin-form-group">
                     <label for="currentPassword" class="admin-label">Contraseña Actual *:</label>
-                    <input type="password" id="currentPassword" class="admin-input" required 
-                           placeholder="Ingresa la contraseña actual">
+                    <input type="password" id="currentPassword" class="admin-input" required
+                        placeholder="Ingresa la contraseña actual">
                 </div>
 
                 <div class="admin-form-group">
                     <label for="newPassword" class="admin-label">Nueva Contraseña *:</label>
-                    <input type="password" id="newPassword" class="admin-input" required minlength="6" 
-                           placeholder="Mínimo 6 caracteres">
+                    <input type="password" id="newPassword" class="admin-input" required minlength="6"
+                        placeholder="Mínimo 6 caracteres">
                 </div>
 
                 <div class="admin-form-group">
                     <label for="confirmNewPassword" class="admin-label">Confirmar Nueva Contraseña *:</label>
-                    <input type="password" id="confirmNewPassword" class="admin-input" required minlength="6" 
-                           placeholder="Repite la nueva contraseña">
+                    <input type="password" id="confirmNewPassword" class="admin-input" required minlength="6"
+                        placeholder="Repite la nueva contraseña">
                 </div>
 
                 <div class="admin-modal-footer">
@@ -435,4 +477,5 @@
     <script src="/js/cloud-db.js"></script>
     <script src="/admin/admin.js"></script>
 </body>
+
 </html>
