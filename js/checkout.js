@@ -114,7 +114,7 @@ class CheckoutManager {
             `;
         }
 
-        // 2. Renderizar métodos de pago según país (OXXO ELIMINADO TOTALMENTE)
+        // 2. Renderizar métodos de pago según país (OXXO y Mercado Pago eliminados)
         if (country.code === "MX") {
             paymentOptionsContainer.innerHTML = `
                 <label class="payment-option-card">
@@ -130,14 +130,6 @@ class CheckoutManager {
                     <div>
                         <strong>💵 Pago Contra Entrega en Efectivo <span class="badge badge-gold" id="badgeContraentregaMX">Exclusivo San Luis Potosí</span></strong>
                         <p class="text-sm text-muted" id="descContraentregaMX">Disponible ÚNICAMENTE en la ciudad de San Luis Potosí. Pagas en efectivo al mensajero.</p>
-                    </div>
-                </label>
-
-                <label class="payment-option-card">
-                    <input type="radio" name="paymentMethod" value="mercadopago">
-                    <div>
-                        <strong>💳 Tarjeta de Crédito / Débito (Mercado Pago)</strong>
-                        <p class="text-sm text-muted">Visa, Mastercard, American Express de cualquier banco mexicano.</p>
                     </div>
                 </label>
 
@@ -382,12 +374,6 @@ class CheckoutManager {
                         <p class="text-sm">🚚 <strong>Pago Contra Entrega en Efectivo (Exclusivo San Luis Potosí):</strong> Pagas en efectivo al mensajero al momento de recibir tu faja en tu domicilio con Envío GRATIS.</p>
                     </div>
                 `;
-            } else if (this.selectedPaymentMethod === "mercadopago") {
-                detailsBox.innerHTML = `
-                    <div class="payment-notice-box">
-                        <p class="text-sm">🔒 <strong>Mercado Pago México:</strong> Podrás pagar de forma 100% segura con tus tarjetas de débito o crédito mexicanas.</p>
-                    </div>
-                `;
             } else {
                 detailsBox.innerHTML = "";
             }
@@ -518,7 +504,6 @@ class CheckoutManager {
         const names = {
             bancoppel: "Transferencia Bancaria BanCoppel Débito / SPEI (México)",
             contraentrega_mx: "Pago Contra Entrega en Efectivo (Exclusivo San Luis Potosí)",
-            mercadopago: "Tarjeta de Crédito / Débito (Mercado Pago)",
             transferencia: "Transferencia Nequi (Colombia)",
             contraentrega: "Pago Contra Entrega en Efectivo (Exclusivo Cali)",
             tarjeta_pse: "Pasarela PSE / Tarjeta (Wompi)",

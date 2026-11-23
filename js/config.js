@@ -99,10 +99,6 @@ const STORE_CONFIG = {
                     clabe: "137700105053226103",
                     holder: "YAA",
                     image: "images/pago_mexico_bancoppel.jpg"
-                },
-                mercadoPago: {
-                    name: "Mercado Pago / Tarjetas",
-                    account: "pagos@tufigurayaa.mx"
                 }
             },
             locations: {
