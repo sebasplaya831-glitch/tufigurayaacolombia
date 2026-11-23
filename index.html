@@ -81,6 +81,18 @@
 
             <!-- Enlaces de navegación -->
             <ul class="nav-links">
+                <!-- Selector de País dentro del menú móvil (evita solapamientos y garantiza acceso directo) -->
+                <li class="mobile-nav-country-item">
+                    <span class="mobile-nav-country-label">País de Compra:</span>
+                    <div class="country-switcher mobile-nav-switcher" aria-label="Cambiar País de Compra">
+                        <button type="button" class="country-select-btn active" data-country="CO" title="Comprar en Colombia (COP)">
+                            <span>🇨🇴 Colombia</span>
+                        </button>
+                        <button type="button" class="country-select-btn" data-country="MX" title="Comprar en México (MXN)">
+                            <span>🇲🇽 México</span>
+                        </button>
+                    </div>
+                </li>
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#catalogo">Catálogo</a></li>
                 <li><a href="#categorias">Colecciones</a></li>
@@ -732,7 +744,8 @@
                         <li><a href="#beneficios">Tecnología Powernet</a></li>
                         <li><a href="#testimonios">Opiniones & Fotos de Clientas</a></li>
                         <li><a href="#nosotros">Sobre la Marca</a></li>
-                        <li><a href="javascript:void(0)" id="btnOpenAdminPanel" style="color: var(--gold-light); font-weight: 600;">⚙️ Panel Administrativo</a></li>
+                        <li><a href="javascript:void(0)" id="btnOpenAdminPanel" style="color: var(--gold-light); font-weight: 600;">⚙️ Panel Administrativo de Pedidos</a></li>
+                        <li><a href="/admin" target="_blank" style="color: var(--gold-light); font-weight: 600;">🔒 Administración de Catálogo (/admin)</a></li>
                     </ul>
                 </div>
 

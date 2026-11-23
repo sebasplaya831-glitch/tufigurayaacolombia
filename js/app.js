@@ -140,11 +140,32 @@ function initNavigation() {
     const mobileMenuBtn = document.getElementById("mobileMenuBtn");
     const navLinks = document.querySelector(".nav-links");
 
+    const updateMobileMenuPosition = () => {
+        if (navbar && navLinks && window.innerWidth <= 840) {
+            const navRect = navbar.getBoundingClientRect();
+            const topPos = Math.max(0, Math.round(navRect.bottom));
+            navLinks.style.top = `${topPos}px`;
+            navLinks.style.maxHeight = `calc(100vh - ${topPos}px)`;
+        } else if (navLinks && window.innerWidth > 840) {
+            navLinks.style.top = "";
+            navLinks.style.maxHeight = "";
+        }
+    };
+
     window.addEventListener("scroll", () => {
         if (window.scrollY > 40) {
             navbar.classList.add("scrolled");
         } else {
             navbar.classList.remove("scrolled");
+        }
+        if (navLinks && navLinks.classList.contains("active")) {
+            updateMobileMenuPosition();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (navLinks && navLinks.classList.contains("active")) {
+            updateMobileMenuPosition();
         }
     });
 
@@ -152,6 +173,7 @@ function initNavigation() {
         // Toggle menú hamburguesa
         mobileMenuBtn.addEventListener("click", (e) => {
             e.stopPropagation();
+            updateMobileMenuPosition();
             const isOpen = navLinks.classList.toggle("active");
             mobileMenuBtn.setAttribute("aria-expanded", isOpen);
             // Cambiar ícono hamburguesa ↔ X

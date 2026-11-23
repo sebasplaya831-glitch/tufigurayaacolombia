@@ -12,7 +12,7 @@
  * tallas completas (S a 3XL) y colores oficiales (Miel y Negro).
  */
 
-const PRODUCTS_DATA = [
+const DEFAULT_PRODUCTS_DATA = [
     // =========================================================
     // LÍNEA POSTQUIRÚRGICA OFICIAL (FOTOS Y PRECIOS DEL USUARIO)
     // =========================================================
@@ -669,40 +669,104 @@ const PRODUCTS_DATA = [
     }
 ];
 
+// =========================================================
+// GESTIÓN DINÁMICA DE PRODUCTOS (LOCALSTORAGE + CATALOGO OFICIAL)
+// =========================================================
+
+function loadCustomProductsFromStorage() {
+    try {
+        if (typeof localStorage !== "undefined") {
+            const raw = localStorage.getItem("tufigura_custom_products");
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    return parsed;
+                }
+            }
+        }
+    } catch (e) {
+        console.error("Error al cargar productos personalizados:", e);
+    }
+    return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS_DATA));
+}
+
+let PRODUCTS_DATA = loadCustomProductsFromStorage();
+
 // Helper para obtener precio según país activo con conversión matemática exacta
 function getProductPrice(product, countryCode = null) {
-    const code = countryCode || getActiveCountryCode();
-    if (code === "MX") return product.priceMXN;
-    return product.priceCOP || (typeof convertMXNtoCOP === "function" ? convertMXNtoCOP(product.priceMXN) : Math.round(product.priceMXN * 188.74));
+    const code = countryCode || (typeof getActiveCountryCode === "function" ? getActiveCountryCode() : "CO");
+    if (code === "MX") return Number(product.priceMXN || 0);
+    return Number(product.priceCOP || (typeof convertMXNtoCOP === "function" ? convertMXNtoCOP(product.priceMXN) : Math.round((product.priceMXN || 0) * 188.74)));
 }
 
 function getProductOriginalPrice(product, countryCode = null) {
-    const code = countryCode || getActiveCountryCode();
-    if (code === "MX") return product.originalPriceMXN;
-    return product.originalPriceCOP || (typeof convertMXNtoCOP === "function" ? convertMXNtoCOP(product.originalPriceMXN) : Math.round(product.originalPriceMXN * 188.74));
+    const code = countryCode || (typeof getActiveCountryCode === "function" ? getActiveCountryCode() : "CO");
+    if (code === "MX") return Number(product.originalPriceMXN || product.priceMXN || 0);
+    return Number(product.originalPriceCOP || (typeof convertMXNtoCOP === "function" ? convertMXNtoCOP(product.originalPriceMXN) : Math.round((product.originalPriceMXN || product.priceMXN || 0) * 188.74)));
 }
 
-// Retrocompatibilidad: propiedades 'price' y 'originalPrice' dinámicas
-PRODUCTS_DATA.forEach(p => {
-    Object.defineProperty(p, 'price', {
-        get() { return getProductPrice(this); },
-        configurable: true
+// Configurar getters dinámicos de precio para todos los productos
+function bindProductPriceGetters(list) {
+    list.forEach(p => {
+        try {
+            Object.defineProperty(p, 'price', {
+                get() { return getProductPrice(this); },
+                configurable: true
+            });
+            Object.defineProperty(p, 'originalPrice', {
+                get() { return getProductOriginalPrice(this); },
+                configurable: true
+            });
+        } catch (e) {}
     });
-    Object.defineProperty(p, 'originalPrice', {
-        get() { return getProductOriginalPrice(this); },
-        configurable: true
-    });
-});
+}
+bindProductPriceGetters(PRODUCTS_DATA);
 
 // Helper para obtener producto por ID
 function getProductById(id) {
     return PRODUCTS_DATA.find(p => p.id === id);
 }
 
-// Categorías del catálogo con división estricta oficial
-const CATEGORIES_DATA = [
-    { id: "all", name: "Todas las Fajas (" + PRODUCTS_DATA.length + ")" },
-    { id: "postquirurgica", name: "Fajas Postquirúrgicas (" + PRODUCTS_DATA.filter(p => p.category === "postquirurgica").length + ")" },
-    { id: "moldeadoras", name: "Fajas Moldeadoras (" + PRODUCTS_DATA.filter(p => p.category === "moldeadoras").length + ")" },
-    { id: "dorada", name: "Línea Dorada (" + PRODUCTS_DATA.filter(p => p.category === "dorada").length + ")" }
-];
+// Guardar productos editados/creados/eliminados
+function saveCustomProducts(newList) {
+    try {
+        if (typeof localStorage !== "undefined") {
+            localStorage.setItem("tufigura_custom_products", JSON.stringify(newList));
+        }
+        PRODUCTS_DATA = newList;
+        bindProductPriceGetters(PRODUCTS_DATA);
+        updateCategoriesData();
+        return true;
+    } catch (e) {
+        console.error("Error al guardar productos:", e);
+        return false;
+    }
+}
+
+// Restaurar productos al catálogo inicial predeterminado
+function resetCustomProductsToDefault() {
+    try {
+        if (typeof localStorage !== "undefined") {
+            localStorage.removeItem("tufigura_custom_products");
+        }
+        PRODUCTS_DATA = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS_DATA));
+        bindProductPriceGetters(PRODUCTS_DATA);
+        updateCategoriesData();
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+// Categorías del catálogo dinámicas con división estricta oficial
+let CATEGORIES_DATA = [];
+
+function updateCategoriesData() {
+    CATEGORIES_DATA = [
+        { id: "all", name: "Todas las Fajas (" + PRODUCTS_DATA.length + ")" },
+        { id: "postquirurgica", name: "Fajas Postquirúrgicas (" + PRODUCTS_DATA.filter(p => p.category === "postquirurgica").length + ")" },
+        { id: "moldeadoras", name: "Fajas Moldeadoras (" + PRODUCTS_DATA.filter(p => p.category === "moldeadoras").length + ")" },
+        { id: "dorada", name: "Línea Dorada (" + PRODUCTS_DATA.filter(p => p.category === "dorada").length + ")" }
+    ];
+}
+updateCategoriesData();

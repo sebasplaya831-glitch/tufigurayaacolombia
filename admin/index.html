@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración Privada | Tu Figura YAA (Colombia & México)</title>
+    <link rel="icon" type="image/jpeg" href="../images/media_1789619569885.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+    <!-- NOTIFICACIONES TOAST -->
+    <div id="adminToastContainer" class="admin-toast-container"></div>
+
+    <!-- =========================================================
+         1. PANTALLA DE LOGIN PRIVADO
+         ========================================================= -->
+    <main id="loginSection" class="admin-login-screen">
+        <div class="admin-login-card">
+            <div class="admin-brand-header">
+                <img src="../images/media_1789619569885.jpg" alt="Tu Figura YAA" class="admin-brand-logo">
+                <h1 class="admin-brand-title">Tú Figura Yaa</h1>
+                <span class="admin-brand-sub">SISTEMA PRIVADO DE ADMINISTRACIÓN</span>
+            </div>
+
+            <p class="admin-login-intro">
+                Ingresa con tus credenciales oficiales para gestionar el catálogo de productos de <strong>Colombia (COP)</strong> y <strong>México (MXN)</strong>.
+            </p>
+
+            <form id="loginForm" class="admin-form" autocomplete="off">
+                <div class="admin-form-group">
+                    <label for="loginEmail" class="admin-label">Correo Electrónico:</label>
+                    <input type="email" id="loginEmail" class="admin-input" required 
+                           placeholder="tufigurayaacolombia@gmail.com" value="tufigurayaacolombia@gmail.com">
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="loginPassword" class="admin-label">Contraseña de Acceso:</label>
+                    <div class="admin-password-wrap">
+                        <input type="password" id="loginPassword" class="admin-input" required 
+                               placeholder="Ingresa tu contraseña">
+                        <button type="button" class="btn-toggle-pwd" id="btnToggleLoginPwd" title="Mostrar/Ocultar contraseña">👁️</button>
+                    </div>
+                </div>
+
+                <div class="admin-login-hint">
+                    <small>🔒 Acceso restringido para la dueña y administración oficial de Tu Figura YAA.</small>
+                </div>
+
+                <button type="submit" class="admin-btn admin-btn-primary admin-btn-block" id="btnLoginSubmit">
+                    <span>Ingresar al Panel de Control</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                        <polyline points="10 17 15 12 10 7"></polyline>
+                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="admin-login-footer">
+                <a href="../" class="admin-link-back">← Volver a la Tienda Pública</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- =========================================================
+         2. PANEL DE CONTROL DE PRODUCTOS (DASHBOARD)
+         ========================================================= -->
+    <div id="dashboardSection" class="admin-dashboard-screen hidden">
+        <!-- BARRA SUPERIOR -->
+        <header class="admin-topbar">
+            <div class="admin-topbar-inner">
+                <div class="admin-topbar-brand">
+                    <img src="../images/media_1789619569885.jpg" alt="Tu Figura YAA" class="admin-mini-logo">
+                    <div>
+                        <span class="admin-app-name">Tú Figura Yaa</span>
+                        <span class="admin-badge-gold">Catálogo CO & MX</span>
+                    </div>
+                </div>
+
+                <div class="admin-topbar-user">
+                    <span class="admin-user-pill">
+                        <span class="user-icon">👤</span>
+                        <span id="activeUserEmail">tufigurayaacolombia@gmail.com</span>
+                    </span>
+                    <a href="../" target="_blank" class="admin-btn admin-btn-sm admin-btn-outline" title="Abrir tienda en nueva pestaña">
+                        <span>🌐 Ver Tienda</span>
+                    </a>
+                    <button type="button" id="btnOpenChangePwdModal" class="admin-btn admin-btn-sm admin-btn-outline">
+                        <span>🔑 Cambiar Contraseña</span>
+                    </button>
+                    <button type="button" id="btnLogout" class="admin-btn admin-btn-sm admin-btn-danger">
+                        <span>🚪 Salir</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main-content">
+            <!-- TARJETAS DE MÉTRICAS -->
+            <section class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <span class="admin-stat-title">Total de Productos</span>
+                    <span class="admin-stat-number" id="statTotalProducts">0</span>
+                    <span class="admin-stat-sub">Catálogo activo</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-title">Línea Postquirúrgica</span>
+                    <span class="admin-stat-number" id="statPostquirurgica">0</span>
+                    <span class="admin-stat-sub">Fajas médicas</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-title">Fajas Moldeadoras</span>
+                    <span class="admin-stat-number" id="statMoldeadoras">0</span>
+                    <span class="admin-stat-sub">Uso diario & levanta cola</span>
+                </div>
+                <div class="admin-stat-card">
+                    <span class="admin-stat-title">Línea Dorada</span>
+                    <span class="admin-stat-number" id="statDorada">0</span>
+                    <span class="admin-stat-sub">Alta definición</span>
+                </div>
+            </section>
+
+            <!-- BARRA DE ACCIONES Y FILTROS -->
+            <section class="admin-toolbar-card">
+                <div class="admin-toolbar-left">
+                    <div class="admin-search-wrapper">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="adminSearchInput" class="admin-search-input" 
+                               placeholder="Buscar por nombre, referencia (REF) o palabra clave...">
+                    </div>
+                    <select id="adminCategoryFilter" class="admin-select">
+                        <option value="all">Todas las Categorías</option>
+                        <option value="postquirurgica">Postquirúrgica & Médica</option>
+                        <option value="moldeadoras">Fajas Moldeadoras</option>
+                        <option value="dorada">Línea Dorada</option>
+                    </select>
+                </div>
+
+                <div class="admin-toolbar-right">
+                    <button type="button" id="btnOpenCreateProductModal" class="admin-btn admin-btn-gold">
+                        <span>➕ Agregar Nuevo Producto</span>
+                    </button>
+                    <button type="button" id="btnResetCatalog" class="admin-btn admin-btn-outline-danger" 
+                            title="Restaurar el catálogo original de 19 fajas si hubo algún error">
+                        <span>↺ Restaurar Catálogo Base</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- TABLA DE PRODUCTOS -->
+            <section class="admin-table-container">
+                <div class="admin-table-header-info">
+                    <h2 class="admin-section-heading">Gestión de Catálogo (Colombia & México)</h2>
+                    <span id="adminProductCountBadge" class="admin-count-pill">0 productos</span>
+                </div>
+
+                <div class="admin-table-responsive">
+                    <table class="admin-products-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Referencia</th>
+                                <th>Nombre del Producto</th>
+                                <th>Categoría</th>
+                                <th>🇨🇴 Precio COP</th>
+                                <th>🇲🇽 Precio MXN</th>
+                                <th>Stock</th>
+                                <th style="text-align: center;">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminProductsTableBody">
+                            <!-- Filas renderizadas dinámicamente por admin.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="adminEmptyState" class="admin-empty-state hidden">
+                    <p>No se encontraron productos que coincidan con la búsqueda.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- =========================================================
+         3. MODAL: CREAR / EDITAR PRODUCTO
+         ========================================================= -->
+    <div id="productModal" class="admin-modal-backdrop hidden">
+        <div class="admin-modal-box">
+            <div class="admin-modal-header">
+                <h3 id="productModalTitle" class="admin-modal-title">Agregar Nuevo Producto</h3>
+                <button type="button" class="admin-modal-close" id="btnCloseProductModal">✕</button>
+            </div>
+
+            <form id="productForm" class="admin-modal-body">
+                <input type="hidden" id="editProductId" value="">
+
+                <div class="admin-form-row admin-form-row-2">
+                    <div class="admin-form-group">
+                        <label for="productRef" class="admin-label">Referencia (REF) *:</label>
+                        <input type="text" id="productRef" class="admin-input" required placeholder="Ej: 705, 902, 814">
+                    </div>
+                    <div class="admin-form-group">
+                        <label for="productCategory" class="admin-label">Categoría *:</label>
+                        <select id="productCategory" class="admin-select" required>
+                            <option value="postquirurgica">Postquirúrgica & Médica</option>
+                            <option value="moldeadoras">Fajas Moldeadoras</option>
+                            <option value="dorada">Línea Dorada</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="productName" class="admin-label">Nombre del Producto *:</label>
+                    <input type="text" id="productName" class="admin-input" required 
+                           placeholder="Ej: Faja Sisa Broches Short Medio (REF. 705)">
+                </div>
+
+                <!-- PRECIOS POR PAÍS (COLOMBIA & MÉXICO) -->
+                <div class="admin-pricing-fieldset">
+                    <legend class="admin-fieldset-legend">💰 Precios Oficiales (Sin membresías)</legend>
+                    <div class="admin-form-row admin-form-row-2">
+                        <div class="admin-form-group">
+                            <label for="productPriceCOP" class="admin-label">🇨🇴 Precio Colombia (COP) *:</label>
+                            <div class="admin-input-prefix-wrap">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="productPriceCOP" class="admin-input" required min="1000" step="100" placeholder="Ej: 377480">
+                            </div>
+                            <small class="admin-field-tip">Precio en pesos colombianos para la tienda de Colombia.</small>
+                        </div>
+
+                        <div class="admin-form-group">
+                            <label for="productPriceMXN" class="admin-label">🇲🇽 Precio México (MXN) *:</label>
+                            <div class="admin-input-prefix-wrap">
+                                <span class="input-prefix">$</span>
+                                <input type="number" id="productPriceMXN" class="admin-input" required min="10" step="10" placeholder="Ej: 2000">
+                            </div>
+                            <small class="admin-field-tip">Precio en pesos mexicanos para la tienda de México.</small>
+                        </div>
+                    </div>
+
+                    <div class="admin-form-row admin-form-row-2">
+                        <div class="admin-form-group">
+                            <label for="productOriginalCOP" class="admin-label">Precio Original Tachado COP (Opcional):</label>
+                            <input type="number" id="productOriginalCOP" class="admin-input" placeholder="Ej: 462410">
+                        </div>
+                        <div class="admin-form-group">
+                            <label for="productOriginalMXN" class="admin-label">Precio Original Tachado MXN (Opcional):</label>
+                            <input type="number" id="productOriginalMXN" class="admin-input" placeholder="Ej: 2450">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IMAGEN -->
+                <div class="admin-form-group">
+                    <label for="productImageSelect" class="admin-label">Foto Principal del Producto *:</label>
+                    <div class="admin-image-selection-wrap">
+                        <select id="productImageSelect" class="admin-select" onchange="previewSelectedImage(this.value)">
+                            <option value="images/media_1789620499316.png">Faja REF. 705 (Sisa Broches Short Medio)</option>
+                            <option value="images/media_1789620505519.png">Faja REF. 712 (Brasier Integrado Short Medio)</option>
+                            <option value="images/media_1789620521730.png">Faja REF. 702 (Pierna a la Rodilla)</option>
+                            <option value="images/media_1789620529762.png">Faja REF. 701 (Strapless Short Medio)</option>
+                            <option value="images/media_1789620536160.png">Faja REF. 724 (Manga 3/4 Espalda Total)</option>
+                            <option value="images/media_1790038884437.png">Faja REF. 902 (Reloj de Arena)</option>
+                            <option value="images/media_1790038895294.jpg">Faja REF. 905 (Cinturilla 9 Varillas)</option>
+                            <option value="images/media_1790038901653.png">Faja REF. 906 (Short Levanta Glúteos)</option>
+                            <option value="images/media_1790038909269.png">Faja REF. 908 (Body Tanga Invisible)</option>
+                            <option value="images/media_1790038914311.png">Faja REF. 910 (Strapless Levanta Cola)</option>
+                            <option value="images/media_1791926399639.png">Faja REF. 914 (Chaleco Corrector)</option>
+                            <option value="images/media_1791926416349.png">Faja REF. 918 (Enterizo Completo)</option>
+                            <option value="images/media_1791926432029.jpg">Faja REF. 921 (Cinturilla Látex)</option>
+                            <option value="images/media_1791926445816.png">Faja REF. 925 (Capri Moldeador)</option>
+                            <option value="images/media_1791927902887.png">Faja REF. 801 (Línea Dorada Reloj Arena)</option>
+                            <option value="images/media_1791927910806.png">Faja REF. 804 (Línea Dorada Busto Libre)</option>
+                            <option value="images/media_1791927923206.png">Faja REF. 807 (Línea Dorada Tirante Ancho)</option>
+                            <option value="images/media_1791927929390.jpg">Faja REF. 810 (Cinturilla Dorada 11 Varillas)</option>
+                            <option value="images/media_1791927935856.jpg">Faja REF. 813 (Chaleco Dorado 13 Varillas)</option>
+                            <option value="custom">Ingresar URL o ruta personalizada...</option>
+                        </select>
+                        <div id="customImageInputWrap" class="hidden" style="margin-top: 0.5rem;">
+                            <input type="text" id="productCustomImage" class="admin-input" placeholder="images/nombre_foto.jpg o https://...">
+                        </div>
+                        <div class="admin-image-preview-box">
+                            <img id="modalImagePreview" src="../images/media_1789620499316.png" alt="Vista previa">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-form-row admin-form-row-2">
+                    <div class="admin-form-group">
+                        <label for="productCompression" class="admin-label">Nivel de Compresión:</label>
+                        <select id="productCompression" class="admin-select">
+                            <option value="Extra Firme">Extra Firme (Postquirúrgica / Línea Dorada)</option>
+                            <option value="Alta">Alta Compresión</option>
+                            <option value="Media">Media Compresión</option>
+                        </select>
+                    </div>
+
+                    <div class="admin-form-group">
+                        <label for="productStock" class="admin-label">Disponibilidad de Inventario:</label>
+                        <select id="productStock" class="admin-select">
+                            <option value="true">✓ En Stock (Disponible para entrega)</option>
+                            <option value="false">✕ Agotado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-label">Tallas Disponibles:</label>
+                    <div class="admin-checkbox-group">
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="XS"> XS</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="S" checked> S</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="M" checked> M</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="L" checked> L</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="XL" checked> XL</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="2XL" checked> 2XL</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="sizes" value="3XL" checked> 3XL</label>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label class="admin-label">Colores Disponibles:</label>
+                    <div class="admin-checkbox-group">
+                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Negro" checked> Negro (#111111)</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Miel / Beige" checked> Miel / Beige (#c99e69)</label>
+                        <label class="admin-checkbox-label"><input type="checkbox" name="colors" value="Moca"> Moca (#6b4c35)</label>
+                    </div>
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="productDescription" class="admin-label">Descripción Corta del Producto:</label>
+                    <textarea id="productDescription" class="admin-textarea" rows="2" 
+                              placeholder="Breve reseña sobre los beneficios, materiales y forma de la faja..."></textarea>
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="productFeatures" class="admin-label">Características & Beneficios (1 por renglón):</label>
+                    <textarea id="productFeatures" class="admin-textarea" rows="3" 
+                              placeholder="Powernet colombiano 100% original&#10;Costuras invisibles que no marcan&#10;Broches reforzados de ajuste gradual"></textarea>
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="productIdealFor" class="admin-label">Uso Recomendado:</label>
+                    <input type="text" id="productIdealFor" class="admin-input" 
+                           placeholder="Ej: Postoperatorio, uso diario, eventos especiales y moldeado reloj de arena">
+                </div>
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="admin-btn admin-btn-outline" id="btnCancelProductModal">Cancelar</button>
+                    <button type="submit" class="admin-btn admin-btn-gold">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         4. MODAL: CAMBIAR CONTRASEÑA DE ACCESO
+         ========================================================= -->
+    <div id="changePwdModal" class="admin-modal-backdrop hidden">
+        <div class="admin-modal-box admin-modal-sm">
+            <div class="admin-modal-header">
+                <h3 class="admin-modal-title">Modificar Contraseña</h3>
+                <button type="button" class="admin-modal-close" id="btnCloseChangePwdModal">✕</button>
+            </div>
+
+            <form id="changePwdForm" class="admin-modal-body">
+                <p class="admin-field-tip" style="margin-bottom: 1rem;">
+                    Actualiza la clave de administración para <strong>tufigurayaacolombia@gmail.com</strong>. La contraseña será hasheada con SHA-256 de forma segura.
+                </p>
+
+                <div class="admin-form-group">
+                    <label for="currentPassword" class="admin-label">Contraseña Actual *:</label>
+                    <input type="password" id="currentPassword" class="admin-input" required 
+                           placeholder="Ingresa la contraseña actual">
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="newPassword" class="admin-label">Nueva Contraseña *:</label>
+                    <input type="password" id="newPassword" class="admin-input" required minlength="6" 
+                           placeholder="Mínimo 6 caracteres">
+                </div>
+
+                <div class="admin-form-group">
+                    <label for="confirmNewPassword" class="admin-label">Confirmar Nueva Contraseña *:</label>
+                    <input type="password" id="confirmNewPassword" class="admin-input" required minlength="6" 
+                           placeholder="Repite la nueva contraseña">
+                </div>
+
+                <div class="admin-modal-footer">
+                    <button type="button" class="admin-btn admin-btn-outline" id="btnCancelChangePwd">Cancelar</button>
+                    <button type="submit" class="admin-btn admin-btn-gold">Actualizar Contraseña</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Cargar catálogo base y scripts de administración -->
+    <script src="../js/config.js"></script>
+    <script src="../js/products.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

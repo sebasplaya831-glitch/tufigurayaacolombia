@@ -464,6 +464,10 @@ textarea {
     font-size: 0.65rem;
 }
 
+.mobile-nav-country-item {
+    display: none;
+}
+
 .nav-links {
     display: flex;
     align-items: center;
@@ -2824,24 +2828,6 @@ textarea {
 @media (max-width: 820px) {
     .announcement-bar .container {
         justify-content: center;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 78px;
-        left: 0;
-        width: 100%;
-        background: var(--bg-main);
-        border-bottom: 1px solid var(--border-gold-subtle);
-        flex-direction: column;
-        padding: 2rem 1.5rem;
-        gap: 1.5rem;
-        transform: translateY(-150%);
-        transition: transform 0.35s ease;
-    }
-
-    .nav-links.active {
-        transform: translateY(0);
     }
 
     .mobile-menu-toggle {
