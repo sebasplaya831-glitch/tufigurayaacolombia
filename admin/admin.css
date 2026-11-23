@@ -900,3 +900,114 @@ body {
     }
 }
 
+/* =========================================================
+   INDICADOR CLOUD Y UPLOAD REAL DE FOTOGRAFÍAS
+   ========================================================= */
+.admin-cloud-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    color: #4ade80;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.admin-cloud-indicator.syncing {
+    background: rgba(255, 204, 0, 0.12);
+    border-color: rgba(255, 204, 0, 0.35);
+    color: #ffcc00;
+}
+
+.admin-file-upload-zone {
+    border: 1.5px dashed var(--gold-border);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-bottom: 0.75rem;
+    position: relative;
+}
+
+.admin-file-upload-zone:hover, .admin-file-upload-zone.dragover {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: var(--gold-primary);
+}
+
+.admin-file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.admin-file-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    pointer-events: none;
+}
+
+.admin-file-upload-icon {
+    font-size: 1.75rem;
+}
+
+.admin-file-upload-text {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--gold-light);
+}
+
+.admin-file-upload-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.badge-market {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+
+.badge-market-active {
+    background: rgba(37, 211, 102, 0.15);
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    color: #4ade80;
+}
+
+.badge-market-inactive {
+    background: rgba(255, 77, 79, 0.15);
+    border: 1px solid rgba(255, 77, 79, 0.4);
+    color: #ff7875;
+}
+
+.admin-market-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.admin-market-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.65rem;
+}
+
+

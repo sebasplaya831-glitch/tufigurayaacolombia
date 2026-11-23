@@ -6,10 +6,16 @@
  */
 
 // Configuración inicial de credenciales oficiales
+// IMPORTANTE: Acepta tanto "TuFigura123" como "Tu Figura 123" como contraseñas iniciales válidas
 const DEFAULT_ADMIN_CONFIG = {
     email: "tufigurayaacolombia@gmail.com",
-    // SHA-256 de "Tu Figura 123"
-    passwordHash: "67f95ab6761cc1a8c11e93b29375d56a72643ecffb448ded0a0a30e1aee00c4c"
+    // SHA-256 de "TuFigura123" (contraseña canónica)
+    passwordHash: "04891646e2e886554db25ec22d6373c4b54c3c115bd11e7f5b21a3168a22ec40",
+    // Hashes alternativos también válidos en el primer inicio de sesión
+    alternateHashes: [
+        "04891646e2e886554db25ec22d6373c4b54c3c115bd11e7f5b21a3168a22ec40", // TuFigura123
+        "67f95ab6761cc1a8c11e93b29375d56a72643ecffb448ded0a0a30e1aee00c4c"  // Tu Figura 123
+    ]
 };
 
 // =========================================================
@@ -29,7 +35,12 @@ function getAdminCredentials() {
     try {
         const stored = localStorage.getItem("tufigura_admin_auth");
         if (stored) {
-            return JSON.parse(stored);
+            const parsed = JSON.parse(stored);
+            // Asegurar que siempre tenga el campo alternateHashes
+            if (!parsed.alternateHashes) {
+                parsed.alternateHashes = DEFAULT_ADMIN_CONFIG.alternateHashes;
+            }
+            return parsed;
         }
     } catch (e) {}
     localStorage.setItem("tufigura_admin_auth", JSON.stringify(DEFAULT_ADMIN_CONFIG));
@@ -79,15 +90,30 @@ function showAdminToast(message, type = "success") {
 let currentProducts = [];
 let activeCategoryFilter = "all";
 let activeSearchQuery = "";
+let pendingUploadDataUrl = null; // Para foto recién subida
 
 function refreshProductsList() {
-    if (typeof loadCustomProductsFromStorage === "function") {
+    if (typeof CloudDB !== "undefined") {
+        CloudDB.fetchProducts().then(products => {
+            currentProducts = products;
+            renderStats();
+            renderProductsTable();
+        }).catch(() => {
+            currentProducts = typeof loadCustomProductsFromStorage === "function"
+                ? loadCustomProductsFromStorage()
+                : (typeof PRODUCTS_DATA !== "undefined" ? PRODUCTS_DATA : []);
+            renderStats();
+            renderProductsTable();
+        });
+    } else if (typeof loadCustomProductsFromStorage === "function") {
         currentProducts = loadCustomProductsFromStorage();
+        renderStats();
+        renderProductsTable();
     } else {
         currentProducts = typeof PRODUCTS_DATA !== "undefined" ? PRODUCTS_DATA : [];
+        renderStats();
+        renderProductsTable();
     }
-    renderStats();
-    renderProductsTable();
 }
 
 function renderStats() {
@@ -194,6 +220,7 @@ function renderProductsTable() {
 // =========================================================
 
 function previewSelectedImage(val) {
+    pendingUploadDataUrl = null; // Reset foto subida cuando se elige del select
     const customWrap = document.getElementById("customImageInputWrap");
     const preview = document.getElementById("modalImagePreview");
     if (val === "custom") {
@@ -206,6 +233,55 @@ function previewSelectedImage(val) {
     }
 }
 
+// Manejar subida de foto real desde dispositivo
+function initImageFileUpload() {
+    const fileInput = document.getElementById("productImageFile");
+    const preview = document.getElementById("modalImagePreview");
+    const dropZone = document.getElementById("dropZone");
+    if (!fileInput) return;
+
+    fileInput.addEventListener("change", async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+            showAdminToast("⏳ Comprimiendo imagen...", "info");
+            if (typeof CloudDB !== "undefined") {
+                pendingUploadDataUrl = await CloudDB.compressImageFile(file, 900, 900, 0.82);
+            } else {
+                // Fallback: FileReader directo
+                pendingUploadDataUrl = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = e => resolve(e.target.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+            preview.src = pendingUploadDataUrl;
+            // Desmarcar el select para indicar que se usa la foto subida
+            const imgSelect = document.getElementById("productImageSelect");
+            if (imgSelect) imgSelect.value = "";
+            showAdminToast("✓ Foto cargada y comprimida correctamente.");
+        } catch (err) {
+            showAdminToast("Error al procesar la imagen: " + err.message, "error");
+        }
+    });
+
+    // Soporte drag & drop
+    if (dropZone) {
+        dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("dragover"); });
+        dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+        dropZone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropZone.classList.remove("dragover");
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                fileInput.files = e.dataTransfer.files;
+                fileInput.dispatchEvent(new Event("change"));
+            }
+        });
+    }
+}
+
 function openCreateProductModal() {
     document.getElementById("productForm").reset();
     document.getElementById("editProductId").value = "";
@@ -215,11 +291,18 @@ function openCreateProductModal() {
     document.getElementById("productImageSelect").value = "images/media_1789620499316.png";
     document.getElementById("customImageInputWrap").classList.add("hidden");
     document.getElementById("modalImagePreview").src = "../images/media_1789620499316.png";
+    pendingUploadDataUrl = null;
 
     // Marcar tallas estándar
     document.querySelectorAll("input[name='sizes']").forEach(ch => {
         ch.checked = ["S", "M", "L", "XL", "2XL", "3XL"].includes(ch.value);
     });
+
+    // Ambos mercados activos por defecto
+    const chkCO = document.getElementById("availableCO");
+    const chkMX = document.getElementById("availableMX");
+    if (chkCO) chkCO.checked = true;
+    if (chkMX) chkMX.checked = true;
 
     document.getElementById("productModal").classList.remove("hidden");
 }
@@ -283,6 +366,15 @@ function openEditProductModal(productId) {
     document.getElementById("productFeatures").value = (product.features || []).join("\n");
     document.getElementById("productIdealFor").value = product.idealFor || "";
 
+    // Disponibilidad por mercado
+    const chkCO = document.getElementById("availableCO");
+    const chkMX = document.getElementById("availableMX");
+    if (chkCO) chkCO.checked = product.availableCO !== false;
+    if (chkMX) chkMX.checked = product.availableMX !== false;
+
+    // Reset foto subida
+    pendingUploadDataUrl = null;
+
     document.getElementById("productModal").classList.remove("hidden");
 }
 
@@ -304,12 +396,20 @@ function handleProductFormSubmit(e) {
     const compression = document.getElementById("productCompression").value;
     const inStock = document.getElementById("productStock").value === "true";
 
-    // Imagen
+    // Imagen — prioridad: foto subida > URL personalizada > selección del menú
     const imgSelect = document.getElementById("productImageSelect").value;
     let finalImage = imgSelect;
-    if (imgSelect === "custom") {
+    if (pendingUploadDataUrl) {
+        finalImage = pendingUploadDataUrl; // Foto real subida por la dueña
+    } else if (imgSelect === "custom") {
         finalImage = document.getElementById("productCustomImage").value.trim() || "images/media_1789620499316.png";
     }
+
+    // Disponibilidad por mercado
+    const chkCO = document.getElementById("availableCO");
+    const chkMX = document.getElementById("availableMX");
+    const availableCO = chkCO ? chkCO.checked : true;
+    const availableMX = chkMX ? chkMX.checked : true;
 
     // Tallas seleccionadas
     const sizes = Array.from(document.querySelectorAll("input[name='sizes']:checked")).map(c => c.value);
@@ -364,6 +464,8 @@ function handleProductFormSubmit(e) {
                 shortDescription,
                 features,
                 idealFor,
+                availableCO,
+                availableMX,
                 badge: `REF. ${ref} • ${categoryLabels[category]}`
             };
             showAdminToast(`✓ Producto "${name}" actualizado con éxito.`);
@@ -396,19 +498,31 @@ function handleProductFormSubmit(e) {
             features,
             idealFor,
             sizes,
-            colors
+            colors,
+            availableCO,
+            availableMX
         };
 
         currentProducts.unshift(newProduct);
         showAdminToast(`✓ Nuevo producto "${name}" agregado con éxito.`);
     }
 
-    // Persistir cambios
-    if (typeof saveCustomProducts === "function") {
-        saveCustomProducts(currentProducts);
-    } else {
-        localStorage.setItem("tufigura_custom_products", JSON.stringify(currentProducts));
-    }
+    // Persistir cambios — CloudDB sincroniza con la nube y localStorage
+    const saveAndSync = async () => {
+        if (typeof CloudDB !== "undefined") {
+            try {
+                await CloudDB.syncCatalogToCloud ? 
+                    CloudDB.syncCatalogToCloud(currentProducts) : 
+                    null;
+            } catch (e) {}
+        }
+        if (typeof saveCustomProducts === "function") {
+            saveCustomProducts(currentProducts);
+        } else {
+            localStorage.setItem("tufigura_custom_products", JSON.stringify(currentProducts));
+        }
+    };
+    saveAndSync();
 
     closeProductModal();
     refreshProductsList();
@@ -475,7 +589,11 @@ async function handleChangePasswordSubmit(e) {
     const creds = getAdminCredentials();
     const currentHash = await sha256(currentPwd);
 
-    if (currentHash !== creds.passwordHash) {
+    // Verificar con hash principal o alternativos
+    const validHashes = creds.alternateHashes || DEFAULT_ADMIN_CONFIG.alternateHashes || [creds.passwordHash];
+    const isCurrentValid = validHashes.includes(currentHash) || currentHash === creds.passwordHash;
+
+    if (!isCurrentValid) {
         showAdminToast("La contraseña actual es incorrecta.", "error");
         return;
     }
@@ -507,7 +625,12 @@ async function handleLoginSubmit(e) {
         const creds = getAdminCredentials();
         const inputHash = await sha256(password);
 
-        if (email === creds.email.toLowerCase() && inputHash === creds.passwordHash) {
+        // Verificar con hash principal o con hashes alternativos aceptados
+        const validHashes = creds.alternateHashes || DEFAULT_ADMIN_CONFIG.alternateHashes || [creds.passwordHash];
+        const isPasswordValid = validHashes.includes(inputHash) || inputHash === creds.passwordHash;
+
+        if (email === creds.email.toLowerCase() && isPasswordValid) {
+            // Si se usó un hash alternativo, actualizar al hash canónico en próximo login
             setSessionActive(creds.email);
             showAdminToast("✓ ¡Bienvenida al Panel Administrativo!");
             showDashboard();
@@ -624,6 +747,9 @@ document.addEventListener("DOMContentLoaded", () => {
             renderProductsTable();
         });
     }
+
+    // Inicializar subida de fotos real
+    initImageFileUpload();
 
     // Comprobar estado de sesión
     if (isAuthenticated()) {

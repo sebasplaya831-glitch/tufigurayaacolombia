@@ -1,6 +1,14 @@
 [build]
   publish = "."
+  functions = "netlify/functions"
 
+# API Serverless → Netlify Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Panel de Administración → admin/index.html (200 rewrite)
 [[redirects]]
   from = "/admin"
   to = "/admin/index.html"
@@ -11,3 +19,8 @@
   to = "/admin/index.html"
   status = 200
 
+# Fallback SPA para el resto de rutas
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

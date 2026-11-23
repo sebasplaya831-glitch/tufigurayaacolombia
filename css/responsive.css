@@ -139,9 +139,10 @@ input, select, textarea, button {
         font-size: 0.73rem;
     }
 
-    .country-switcher {
-        align-self: center;
-        margin-top: 0.25rem;
+    /* El country-switcher del announcement bar SE OCULTA en móvil
+       porque ya está integrado dentro del menú hamburguesa */
+    .announcement-bar .country-switcher {
+        display: none;
     }
 
     .mobile-nav-country-item {
@@ -191,14 +192,16 @@ input, select, textarea, button {
         border-bottom: 1.5px solid var(--border-gold-subtle);
         flex-direction: column;
         align-items: stretch;
-        padding: 1rem 1.5rem 2rem;
+        padding: 0.75rem 1.5rem 2.5rem;
         gap: 0;
         transform: translateY(-120%);
         transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 999;
-        max-height: calc(100vh - 66px);
+        max-height: calc(100dvh - 66px);
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.85);
+        overscroll-behavior: contain;
     }
 
     .nav-links.active {
@@ -211,6 +214,7 @@ input, select, textarea, button {
 
     .nav-links li:last-child {
         border-bottom: none;
+        padding-bottom: 0.5rem;
     }
 
     .nav-links a {
@@ -237,6 +241,20 @@ input, select, textarea, button {
 
     .nav-country-indicator {
         display: none;
+    }
+
+    /* El selector de país dentro del menú móvil va SIEMPRE al tope */
+    .mobile-nav-country-item {
+        display: flex !important;
+        order: -1;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.85rem 0.65rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 1.5px solid var(--border-gold-subtle) !important;
+        background: rgba(212, 175, 55, 0.06);
+        border-radius: 6px;
     }
 
     /* ---- HERO SECTION ---- */
@@ -529,6 +547,12 @@ input, select, textarea, button {
     /* ---- NAVBAR MÓVIL ---- */
     .nav-wrapper {
         height: 60px;
+    }
+
+    /* En móviles ≤ 580px el nav menú arranca desde los 60px del nav */
+    .nav-links {
+        top: 60px !important;
+        max-height: calc(100dvh - 60px) !important;
     }
 
     .brand-logo-badge {
