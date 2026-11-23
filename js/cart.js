@@ -155,6 +155,13 @@ class CartManager {
 
         const subtotal = enrichedItems.reduce((acc, item) => acc + item.totalPrice, 0);
 
+        // Descuento VIP 30%
+        const vipActive = typeof isVipMember === "function" && isVipMember();
+        let vipDiscount = 0;
+        if (vipActive && subtotal > 0) {
+            vipDiscount = Math.round(subtotal * 0.30);
+        }
+
         // Descuento de cupón (si existiera)
         let couponDiscount = 0;
         if (this.appliedCoupon) {
@@ -165,7 +172,7 @@ class CartManager {
             }
         }
 
-        const totalDiscount = couponDiscount;
+        const totalDiscount = vipDiscount + couponDiscount;
 
         // Envío según país y ciudad de destino (Gratis exclusivamente en Cali para CO y San Luis Potosí para MX)
         const freeCity = (country.shipping.freeShippingCity || "").toLowerCase();
@@ -181,9 +188,9 @@ class CartManager {
             count,
             subtotal,
             discount: totalDiscount,
-            vipDiscount: 0,
-            isVipMember: false,
-            vipDiscountPercent: 0,
+            vipDiscount,
+            isVipMember: vipActive,
+            vipDiscountPercent: vipActive ? 30 : 0,
             appliedCoupon: this.appliedCoupon,
             shippingCost,
             isFreeShipping,

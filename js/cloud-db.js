@@ -16,8 +16,8 @@
 const CloudDB = (() => {
     // Configuración de endpoints en la nube
     const CLOUD_CONFIG = {
-        // Firebase Realtime DB pública para lectura, segura para escritura
-        firebaseEndpoint: "https://tu-figura-yaa-catalog-default-rtdb.firebaseio.com/catalog.json",
+        // Objeto compartido en la nube RESTful API Dev persistente
+        cloudDbEndpoint: "https://api.restful-api.dev/objects/ff808181a09d98f701a20a7673c32bae",
         // Netlify Serverless API endpoint
         apiEndpoint: "/api/products",
         authEndpoint: "/api/auth/login",
@@ -168,12 +168,36 @@ const CloudDB = (() => {
         // 1. Obtener de caché local primero para render inmediato
         let products = getLocalProducts();
 
-        // 2. Intentar sincronizar con Netlify API / Cloud DB
+        // 2. Intentar sincronizar con RESTful Cloud DB persistente (para sincronización multi-dispositivo real)
+        try {
+            const cloudController = new AbortController();
+            const cloudTimeout = setTimeout(() => cloudController.abort(), 4500);
+
+            const cloudRes = await fetch(CLOUD_CONFIG.cloudDbEndpoint, {
+                method: "GET",
+                headers: { "Accept": "application/json" },
+                signal: cloudController.signal
+            }).catch(() => null);
+
+            clearTimeout(cloudTimeout);
+
+            if (cloudRes && cloudRes.ok) {
+                const cloudObj = await cloudRes.json();
+                if (cloudObj && cloudObj.data && Array.isArray(cloudObj.data.products) && cloudObj.data.products.length > 0) {
+                    products = cloudObj.data.products;
+                    setLocalProducts(products);
+                    return products;
+                }
+            }
+        } catch (cloudErr) {
+            console.log("ℹ️ Error leyendo Cloud DB:", cloudErr.message);
+        }
+
+        // 3. Fallback: intentar con Netlify Serverless API
         try {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 4000);
+            const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-            // Intentar primero con la API de Netlify
             const res = await fetch(CLOUD_CONFIG.apiEndpoint, {
                 method: "GET",
                 headers: { "Accept": "application/json" },
@@ -186,27 +210,6 @@ const CloudDB = (() => {
                 const data = await res.json();
                 if (data && data.success && Array.isArray(data.products) && data.products.length > 0) {
                     products = data.products;
-                    setLocalProducts(products);
-                    return products;
-                }
-            }
-
-            // Si la API de Netlify no tiene datos aún, intentar con Firebase Cloud DB
-            const fbController = new AbortController();
-            const fbTimeout = setTimeout(() => fbController.abort(), 3500);
-
-            const fbRes = await fetch(CLOUD_CONFIG.firebaseEndpoint, {
-                method: "GET",
-                headers: { "Accept": "application/json" },
-                signal: fbController.signal
-            }).catch(() => null);
-
-            clearTimeout(fbTimeout);
-
-            if (fbRes && fbRes.ok) {
-                const fbData = await fbRes.json();
-                if (Array.isArray(fbData) && fbData.length > 0) {
-                    products = fbData;
                     setLocalProducts(products);
                     return products;
                 }
@@ -232,21 +235,27 @@ const CloudDB = (() => {
             } catch (e) {}
         }
 
-        // 3. Sincronizar en Netlify Serverless API
+        // 3. Sincronizar en RESTful Cloud DB persistente (disponible universalmente para todos los clientes y dispositivos)
+        const cloudDbPromise = fetch(CLOUD_CONFIG.cloudDbEndpoint, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: "Tu Figura YAA Catalog",
+                data: {
+                    products: products,
+                    updatedAt: new Date().toISOString()
+                }
+            })
+        }).catch(err => console.warn("Cloud DB sync error:", err.message));
+
+        // 4. Sincronizar en Netlify Serverless API
         const netlifyPromise = fetch(CLOUD_CONFIG.apiEndpoint, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ products })
         }).catch(err => console.warn("Netlify API sync error:", err.message));
 
-        // 4. Sincronizar en Firebase Cloud DB
-        const fbPromise = fetch(CLOUD_CONFIG.firebaseEndpoint, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(products)
-        }).catch(err => console.warn("Firebase sync error:", err.message));
-
-        await Promise.allSettled([netlifyPromise, fbPromise]);
+        await Promise.allSettled([cloudDbPromise, netlifyPromise]);
         return true;
     }
 

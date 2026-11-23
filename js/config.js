@@ -203,21 +203,58 @@ function convertCOPtoMXN(amountCOP) {
 }
 
 // ====================================================================
-// HELPERS RETROCOMPATIBLES (MEMBRESÍAS DESACTIVADAS)
+// HELPERS DEL CLUB VIP (DESCUENTO DEL 30%)
 // ====================================================================
 function isVipMember() {
+    try {
+        if (typeof localStorage !== "undefined") {
+            const raw = localStorage.getItem("tufigura_vip_membership");
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                return Boolean(parsed && parsed.active);
+            }
+        }
+    } catch (e) {}
     return false;
 }
 
 function getVipMembershipInfo() {
+    try {
+        if (typeof localStorage !== "undefined") {
+            const raw = localStorage.getItem("tufigura_vip_membership");
+            if (raw) return JSON.parse(raw);
+        }
+    } catch (e) {}
     return null;
 }
 
 function activateVipMembership() {
-    // Membresías eliminadas
+    try {
+        if (typeof localStorage !== "undefined") {
+            const vipData = {
+                active: true,
+                discountPercent: 30,
+                name: "Membresía VIP Tu Figura YAA",
+                activatedAt: new Date().toISOString()
+            };
+            localStorage.setItem("tufigura_vip_membership", JSON.stringify(vipData));
+            if (typeof cart !== "undefined" && typeof cart.notifyListeners === "function") {
+                cart.notifyListeners();
+            }
+            return vipData;
+        }
+    } catch (e) {}
+    return null;
 }
 
 function cancelVipMembership() {
-    // Membresías eliminadas
+    try {
+        if (typeof localStorage !== "undefined") {
+            localStorage.removeItem("tufigura_vip_membership");
+            if (typeof cart !== "undefined" && typeof cart.notifyListeners === "function") {
+                cart.notifyListeners();
+            }
+        }
+    } catch (e) {}
 }
 

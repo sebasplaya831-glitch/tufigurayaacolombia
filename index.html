@@ -1095,24 +1095,25 @@
                 PRODUCTS_DATA = updatedProducts;
                 if (typeof renderProducts === "function") renderProducts();
                 if (typeof updateCategoriesData === "function") updateCategoriesData();
+                if (typeof cart !== "undefined" && typeof cart.notifyListeners === "function") cart.notifyListeners();
                 console.log("🔄 Catálogo actualizado desde el panel de administración.");
             }
         };
 
-        // Al cargar la tienda, intentar sincronizar productos desde la nube
+        // Al cargar la tienda, sincronizar productos desde la nube persistente
         document.addEventListener("DOMContentLoaded", function() {
             if (typeof CloudDB !== "undefined") {
                 CloudDB.fetchProducts().then(function(cloudProducts) {
-                    if (cloudProducts && cloudProducts.length > 0) {
-                        const country = typeof getActiveCountryCode === "function" ? getActiveCountryCode() : "CO";
-                        const filtered = CloudDB.filterProductsByCountry(cloudProducts, country);
-                        if (filtered.length > 0 && typeof saveCustomProducts === "function") {
-                            saveCustomProducts(cloudProducts);
-                            if (typeof renderProducts === "function") renderProducts();
-                        }
+                    if (cloudProducts && cloudProducts.length > 0 && typeof saveCustomProducts === "function") {
+                        saveCustomProducts(cloudProducts);
+                        PRODUCTS_DATA = cloudProducts;
+                        if (typeof renderProducts === "function") renderProducts();
+                        if (typeof updateCategoriesData === "function") updateCategoriesData();
+                        if (typeof cart !== "undefined" && typeof cart.notifyListeners === "function") cart.notifyListeners();
+                        console.log("☁️ Catálogo sincronizado desde base de datos persistente.");
                     }
-                }).catch(function() {
-                    // Sin red — se usa catálogo local en caché, funciona normalmente
+                }).catch(function(err) {
+                    console.log("ℹ️ Conexión local activa.");
                 });
             }
         });
